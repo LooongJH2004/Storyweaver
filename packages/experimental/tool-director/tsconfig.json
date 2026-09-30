@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types"
+  },
+  "include": ["src"],
+  "references": [
+    { "path": "../../../vendor/cosmokit" },
+    { "path": "../../../vendor/schemastery" },
+    { "path": "../../../vendor/cordis" },
+    { "path": "../../core/agent" },
+    { "path": "../../llm/llm" },
+    { "path": "../../llm/token-meter" },
+    { "path": "../../core/session" },
+    { "path": "../../session/session-persistence" },
+    { "path": "../../core/tools" },
+    { "path": "../../core/system-prompt" },
+    { "path": "../../preset/agent-presets" },
+    { "path": "../../api/story-controller/tsconfig.host.json" },
+    { "path": "../actor" },
+    { "path": "../../story/story" },
+    { "path": "../../story/story-home" },
+    { "path": "../../interaction/permission-presets" },
+    { "path": "../../runtime-diagnostics/invariants" },
+    { "path": "../../util/atomic-write" }
+  ]
+}

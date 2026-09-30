@@ -1,0 +1,1 @@
+Memory consolidation must cover every assigned source exactly once. Coverage errors: {"missing":["opaque-24"],"unexpected":[],"duplicated":[]}. Use posture=silent. Cover only the assigned sources across context_update units; keep each source in one unit. No changes were submitted. Correct and resend the complete consolidation.

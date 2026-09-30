@@ -1,0 +1,13 @@
+{
+  "publicTurns": {
+    "used": 0,
+    "total": 2,
+    "remaining": 2,
+    "counting": "Each public speak, pass or conclude consumes one turn. Private preparation consumes none. Remaining includes the current turn; it is a ceiling, not a requirement to keep talking."
+  },
+  "opportunities": [
+    0,
+    0
+  ],
+  "instruction": "Only the current speaker may publish. Submit a discussion decision with this turn. Your prior stance is a private starting intention, not a speech outline. Answer the relevant words or actions you actually perceived, rather than restating your position. Prefer one useful contribution: a reply, question, choice, commitment or attempted action. Keep it as brief as the moment allows while respecting explicit character and scene length guidance. Pass if you have nothing useful to add. If your contribution needs world feedback, keep action=speak or pass as appropriate: the host pauses and resumes the discussion after settlement. Waiting for a result is not a reason to conclude. Conclude only when an outcome or irreducible deadlock is reached, or no useful exchange remains. Before concluding, give an affected participant with no public opportunity a chance to respond, object or pass; lack of a floor is not agreement. Finishing your own reply alone does not end the group exchange. Quiet changes and unresolved disagreement are valid outcomes. Floor metadata is not character dialogue."
+}

@@ -1,0 +1,56 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types",
+    "tsBuildInfoFile": "lib/tsconfig.host.tsbuildinfo"
+  },
+  "files": [
+    "src/index.ts",
+    "src/invariant.ts",
+    "src/types.ts",
+    "src/feed.ts",
+    "src/context-preview.ts",
+    "src/storybook-authoring.ts",
+    "src/storybook-state.ts",
+    "src/story-package.ts"
+  ],
+  "references": [
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../gateway/tsconfig.host.json"
+    },
+    {
+      "path": "../../core/session"
+    },
+    {
+      "path": "../../llm/llm"
+    },
+    {
+      "path": "../../session/session-persistence"
+    },
+    {
+      "path": "../../runtime-diagnostics/invariants"
+    },
+    {
+      "path": "../../storage/storage-domain"
+    },
+    {
+      "path": "../../story/story"
+    },
+    {
+      "path": "../../story/story-home"
+    },
+    {
+      "path": "../../typert/protocol"
+    },
+    {
+      "path": "../../experimental/actor"
+    },
+    {
+      "path": "../../story/roleplay-core"
+    }
+  ]
+}

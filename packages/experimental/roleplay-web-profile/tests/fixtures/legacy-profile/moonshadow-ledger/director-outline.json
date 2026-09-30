@@ -1,0 +1,365 @@
+{
+  "updateMode": "auto_unlocked",
+  "premise": "午夜钟响前，让账簿的归属问题逐步转化为‘谁有权定义一个人的记忆与身份’；结局保持开放，由玩家选择和 Actor 的真实反应共同收束。",
+  "premiseLocked": true,
+  "themes": [
+    {
+      "id": "theme-memory-autonomy",
+      "locked": true,
+      "text": "记忆属于经历它的人；善意、神意或效率都不能自动赋予他人处置权。"
+    },
+    {
+      "id": "theme-truth-and-identity",
+      "locked": false,
+      "text": "不完整、被篡改甚至主动遗忘的记忆，仍会参与塑造身份，但不必永久决定身份。"
+    },
+    {
+      "id": "theme-trust-has-cost",
+      "locked": false,
+      "text": "真正的信任应当伴随可验证的风险与代价，而不是由导演直接宣布成立。"
+    }
+  ],
+  "hardConstraints": [
+    {
+      "id": "constraint-actor-authority",
+      "locked": true,
+      "text": "导演不得替任何持久角色说话、决定其动作、情绪、选择或内心结论；角色行为只能来自对应 NPC Actor 工具事件。"
+    },
+    {
+      "id": "constraint-information-asymmetry",
+      "locked": true,
+      "text": "保持角色信息不对称：Actor 只接收自己的公开设定、私密上下文、感知与不确定性，不得看到世界真相、其他角色私密信息或本大纲。"
+    },
+    {
+      "id": "constraint-no-canon-tav",
+      "locked": true,
+      "text": "不得替玩家规定塔夫的职业、身世、恋爱关系、既有关键选择或最终立场。"
+    },
+    {
+      "id": "constraint-mira-memory",
+      "locked": true,
+      "text": "在可追溯证据出现前，不把弥菈关于兄长的记忆直接判定为真或假；任何揭示先作为候选解释。"
+    },
+    {
+      "id": "constraint-ledger-canon",
+      "locked": true,
+      "text": "大纲、伏笔与导演意图均非世界事实；只有玩家输入、已确立 Plot Ledger 事实和可追溯 Actor 事件可以成为正史。"
+    }
+  ],
+  "arcs": [
+    {
+      "id": "arc-ledger-temptation",
+      "locked": false,
+      "title": "账簿的诱惑",
+      "intent": "让账簿从危险物件升级为能够兑现具体愿望的道德难题，但不预设任何角色会接受或拒绝。",
+      "status": "active",
+      "tensions": [
+        "消除创伤与保留自我的冲突",
+        "短期救赎与长期控制权的冲突",
+        "个人秘密与共同安全的冲突"
+      ],
+      "desiredQuestions": [
+        "删除痛苦记忆是在治疗一个人，还是在改写一个人？",
+        "谁有资格替另一个人判断哪段记忆值得保留？"
+      ],
+      "completionSignals": [
+        "账簿的所有权、封存方式或毁灭方案被明确处理",
+        "至少一项处理决定获得可追溯的角色回应"
+      ]
+    },
+    {
+      "id": "arc-mira-missing-hour",
+      "locked": false,
+      "title": "弥菈失去的一小时",
+      "intent": "通过可验证线索逐步解释弥菈、邀请函与失踪兄长的关系，允许真相随 Actor 调查和玩家选择改变呈现顺序。",
+      "status": "planned",
+      "tensions": [
+        "自我证词与外部证据不一致",
+        "找回记忆可能带来新的伤害",
+        "委托人与受害者身份可能重叠"
+      ],
+      "desiredQuestions": [
+        "邀请众人来到精灵之歌的人是谁？",
+        "弥菈遗失的究竟是一小时、一个人，还是一项承诺？"
+      ],
+      "completionSignals": [
+        "失去的一小时获得至少两条相互独立的证据",
+        "弥菈与账簿的关系得到可追溯确认或被明确保留为未决"
+      ]
+    },
+    {
+      "id": "arc-memory-vault",
+      "locked": false,
+      "title": "记忆库的门",
+      "intent": "将个人困境连接到更大的莎尔记忆交易网络，为中长线发展提供入口而不强迫本幕进入终局。",
+      "status": "planned",
+      "tensions": [
+        "立即关闭账簿与追查上游网络的取舍",
+        "公开受害者记忆与保护隐私的取舍"
+      ],
+      "desiredQuestions": [
+        "账簿只是钥匙、容器，还是有自身目的的选择者？",
+        "下城区还有多少人的记忆已被登记？"
+      ],
+      "completionSignals": [
+        "记忆库入口的存在被 Actor 事件或玩家行动证实",
+        "是否继续追查上游网络成为玩家可选择的新目标"
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "id": "beat-elfsong-letter",
+      "locked": false,
+      "arcId": "arc-ledger-temptation",
+      "title": "精灵之歌的第十三封信",
+      "intent": "用异常邀请函、银环和空白账页建立共同问题，让导演派发感知而不代替角色解释。",
+      "status": "armed",
+      "priority": 5,
+      "prerequisiteLedgerFacts": [],
+      "prerequisiteBeatIds": [],
+      "triggerConditions": [
+        "玩家要求推进开场",
+        "玩家检查邀请函、银环或账簿"
+      ],
+      "externalPressure": [
+        "午夜前账页会逐步显出新的姓名",
+        "窗外可能出现观察精灵之歌的陌生信使"
+      ],
+      "revealCandidates": [
+        "不同邀请函缺失的音节可以拼成一个名字",
+        "银环内侧刻痕与账簿封印同源"
+      ],
+      "exitConditions": [
+        "众人形成一个由玩家推动的下一步目标",
+        "至少一名 Actor 对账簿或邀请函产生可追溯回应"
+      ],
+      "fallbackOptions": [
+        "由环境压力显出一行新字，但不规定任何角色反应",
+        "让一名外部临时信使送来第二件证物"
+      ],
+      "resolvedByEventRefs": []
+    },
+    {
+      "id": "beat-compare-missing-hour",
+      "locked": false,
+      "arcId": "arc-mira-missing-hour",
+      "title": "比对失去的一小时",
+      "intent": "提供可被角色独立判断的时间线碎片，验证弥菈证词中的断层。",
+      "status": "candidate",
+      "priority": 4,
+      "prerequisiteLedgerFacts": [
+        "弥菈明确表达自己愿意调查缺失记忆，或玩家取得等价授权"
+      ],
+      "prerequisiteBeatIds": [
+        "beat-elfsong-letter"
+      ],
+      "triggerConditions": [
+        "玩家要求核对信件、酒馆记录或码头路线",
+        "Actor 提出调查弥菈时间线的意图"
+      ],
+      "externalPressure": [
+        "账簿可能用一段无主记忆换取时间线线索",
+        "知情证人在午夜前准备离开下城区"
+      ],
+      "revealCandidates": [
+        "弥菈的路线中出现不属于她记忆的捷径",
+        "兄长名字的书写方式与邀请函缺字规律一致"
+      ],
+      "exitConditions": [
+        "一项证词被证实、一项被推翻或冲突被明确记录",
+        "是否继续承受记忆代价交由玩家决定"
+      ],
+      "fallbackOptions": [
+        "提供互相矛盾的码头登记与酒馆账单",
+        "将关键证据延后并推进午夜时钟"
+      ],
+      "resolvedByEventRefs": []
+    },
+    {
+      "id": "beat-open-memory-vault",
+      "locked": false,
+      "arcId": "arc-memory-vault",
+      "title": "记忆库门槛",
+      "intent": "在足够证据与明确玩家选择后开放更大的记忆交易网络。",
+      "status": "candidate",
+      "priority": 3,
+      "prerequisiteLedgerFacts": [
+        "至少一种账簿运作规则已成为 Plot Ledger 事实"
+      ],
+      "prerequisiteBeatIds": [
+        "beat-compare-missing-hour"
+      ],
+      "triggerConditions": [
+        "玩家选择追踪账簿来源",
+        "可追溯事件确认银环或邀请函是开启媒介"
+      ],
+      "externalPressure": [
+        "记忆库可能在午夜后迁移",
+        "上游持有者会尝试回收账簿"
+      ],
+      "revealCandidates": [
+        "账簿记录的并非记忆内容，而是记忆所有权的转移",
+        "邀请者可能在保护某段记忆而非单纯设局"
+      ],
+      "exitConditions": [
+        "玩家决定进入、封锁或放弃记忆库入口",
+        "该决定获得世界后果且不替 Actor 规定选择"
+      ],
+      "fallbackOptions": [
+        "保留入口坐标作为后续章节钩子",
+        "让回收者留下可调查痕迹后撤离"
+      ],
+      "resolvedByEventRefs": []
+    }
+  ],
+  "foreshadows": [
+    {
+      "id": "foreshadow-missing-syllables",
+      "locked": false,
+      "title": "邀请函缺失的音节",
+      "narrativePurpose": "把分散邀请函连接成一条可推理线索，并暗示邀请者刻意限制信息。",
+      "status": "available",
+      "seedCandidates": [
+        "描述纸张时提示每封信都有不自然的留白",
+        "在文字检查成功后给出缺字位置而非直接给答案"
+      ],
+      "intendedPayoff": "缺失音节拼出与弥菈兄长或记忆库门槛相关的名字，但最终解释必须由证据确认。",
+      "revealConditions": [
+        "玩家主动比对至少两封邀请函",
+        "Actor 通过工具事件指出留白模式"
+      ],
+      "earliestBeatId": "beat-elfsong-letter",
+      "latestBeatId": "beat-compare-missing-hour",
+      "ambiguityNotes": [
+        "名字既可能是人名，也可能是入口口令",
+        "缺字者可能在隐藏身份，也可能在规避账簿感知"
+      ],
+      "dependencyIds": [],
+      "plantedEventRefs": [],
+      "payoffEventRefs": []
+    },
+    {
+      "id": "foreshadow-silver-ring",
+      "locked": false,
+      "title": "银环内侧的旧刻痕",
+      "narrativePurpose": "提供可触摸、可拒绝、可交给不同角色判断的物证。",
+      "status": "available",
+      "seedCandidates": [
+        "光线变化时让刻痕短暂显现",
+        "角色检查银环时提供材质与魔法残留的感知"
+      ],
+      "intendedPayoff": "银环可验证一次记忆所有权转移，或成为通往记忆库的媒介。",
+      "revealConditions": [
+        "玩家允许检查或使用银环",
+        "对应 Actor 自主提出鉴定并产生工具事件"
+      ],
+      "earliestBeatId": "beat-elfsong-letter",
+      "latestBeatId": "beat-open-memory-vault",
+      "ambiguityNotes": [
+        "它可能是钥匙，也可能只是曾经完成过转移的收据"
+      ],
+      "dependencyIds": [],
+      "plantedEventRefs": [],
+      "payoffEventRefs": []
+    },
+    {
+      "id": "foreshadow-thirteenth-name",
+      "locked": false,
+      "title": "第十三个未写完的名字",
+      "narrativePurpose": "制造午夜压力，并为账簿是否具有选择能力保留多种解释。",
+      "status": "planned",
+      "seedCandidates": [
+        "每次时钟推进时增加一笔墨迹",
+        "只有在玩家查看账页时显示当前变化"
+      ],
+      "intendedPayoff": "名字指向下一位记忆可能被登记的人，目标由已经发生的事件动态决定。",
+      "revealConditions": [
+        "午夜时钟达到三格",
+        "已有事件让潜在目标与账簿产生可追溯关联"
+      ],
+      "earliestBeatId": "beat-compare-missing-hour",
+      "latestBeatId": "beat-open-memory-vault",
+      "ambiguityNotes": [
+        "名字可能是受害者、签署者或记录员，不应提前定性"
+      ],
+      "dependencyIds": [
+        "foreshadow-missing-syllables"
+      ],
+      "plantedEventRefs": [],
+      "payoffEventRefs": []
+    },
+    {
+      "id": "foreshadow-shared-new-memory",
+      "locked": false,
+      "title": "一段无人记得共同经历过的新记忆",
+      "narrativePurpose": "为账簿可能制造而不只是夺取记忆留下晚期线索。",
+      "status": "planned",
+      "seedCandidates": [
+        "只在多个来源独立描述同一陌生细节后标记异常",
+        "避免直接叙述任何持久角色确信该记忆为真"
+      ],
+      "intendedPayoff": "揭示账簿能够将记忆所有权拆分、复制或伪造，但具体规则由可追溯事件验证。",
+      "revealConditions": [
+        "至少两名 Actor 独立产生相互呼应的事件",
+        "玩家选择调查这段共同记忆"
+      ],
+      "earliestBeatId": "beat-compare-missing-hour",
+      "latestBeatId": "beat-open-memory-vault",
+      "ambiguityNotes": [
+        "共同细节可能来自魔法复制，也可能来自共同被删除的真实经历"
+      ],
+      "dependencyIds": [],
+      "plantedEventRefs": [],
+      "payoffEventRefs": []
+    }
+  ],
+  "mysteries": [
+    {
+      "id": "mystery-inviter",
+      "locked": false,
+      "question": "是谁邀请众人来到精灵之歌？",
+      "status": "open",
+      "answerIntent": "答案应同时解释邀请函缺字和银环来源；允许是单人、组织或被账簿利用的中间人。",
+      "evidenceEventRefs": []
+    },
+    {
+      "id": "mystery-mira-brother",
+      "locked": false,
+      "question": "弥菈的兄长是真实失踪、被删除，还是一段被移植的关系？",
+      "status": "open",
+      "answerIntent": "保持三种解释竞争，直到至少两条独立证据形成优势；最终仍允许角色对证据有不同判断。",
+      "evidenceEventRefs": []
+    },
+    {
+      "id": "mystery-ledger-purpose",
+      "locked": false,
+      "question": "账簿在记录交易、执行契约，还是主动寻找新的记忆所有者？",
+      "status": "open",
+      "answerIntent": "通过可重复观察的规则回答，不把拟人化描述直接当作意识证据。",
+      "evidenceEventRefs": []
+    }
+  ],
+  "clocks": [
+    {
+      "id": "clock-midnight",
+      "locked": false,
+      "title": "午夜账页闭合",
+      "progress": 0,
+      "limit": 4,
+      "trigger": "场景发生不可逆转的时间消耗、玩家明确等待，或一次主要调查失败并产生世界后果。",
+      "consequence": "达到四格时账簿完成当前页，记忆库入口转移或一项尚未处理的外部压力落地；不得借此强迫角色行动。",
+      "status": "active"
+    },
+    {
+      "id": "clock-reclaimers",
+      "locked": false,
+      "title": "回收者逼近",
+      "progress": 0,
+      "limit": 3,
+      "trigger": "公开施展与账簿相关的魔法、向不可信来源泄露账簿位置，或留下明显追踪痕迹。",
+      "consequence": "达到三格时外部回收力量抵达场景边缘，先形成可感知压力，再由玩家与 Actor 决定应对。",
+      "status": "active"
+    }
+  ]
+}

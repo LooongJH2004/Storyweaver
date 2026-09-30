@@ -1,0 +1,41 @@
+{
+  "extends": "../../../tsconfig.base.client.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types",
+    "tsBuildInfoFile": "lib/tsconfig.client.tsbuildinfo"
+  },
+  "files": [
+    "src/client/index.ts",
+    "src/types.ts",
+    "src/client/model.ts",
+    "src/client/contracts.ts",
+    "src/client/inspection.ts",
+    "src/client/personal-styles.ts",
+    "src/client/execution-live.ts",
+    "src/client/execution-model.ts"
+  ],
+  "references": [
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../../story/roleplay-core"
+    },
+    {
+      "path": "../../typert/protocol"
+    },
+    {
+      "path": "../gateway/tsconfig.client.json"
+    },
+    {
+      "path": "../../client/connection/tsconfig.client.json"
+    },
+    {
+      "path": "../../client/store"
+    },
+    {
+      "path": "../../host/directory-picker"
+    }
+  ]
+}

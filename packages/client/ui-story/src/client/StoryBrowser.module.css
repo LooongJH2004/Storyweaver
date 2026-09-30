@@ -1,0 +1,55 @@
+.root { min-height: 0; height: 100%; display: flex; flex-direction: column; padding: 14px 8px 8px; color: var(--dsw-color-text-primary); }
+.creatorWorkspace { flex: 0 0 auto; margin: 0 0 12px; border: 1px solid color-mix(in srgb, #a98aff 24%, transparent); border-radius: 11px; padding: 4px; background: color-mix(in srgb, #8f6de0 6%, transparent); }
+.activeCreator { border-color: color-mix(in srgb, #a98aff 48%, transparent); background: color-mix(in srgb, #8f6de0 13%, transparent); }
+.creatorHeader { display: flex; align-items: center; gap: 4px; }
+.creatorMain { min-width: 0; flex: 1; min-height: 38px; border: 0; border-radius: 8px; background: transparent; color: inherit; display: flex; align-items: center; gap: 8px; padding: 7px 8px; font-weight: 650; cursor: pointer; text-align: left; }
+.creatorMain:hover { background: color-mix(in srgb, #8f6de0 12%, transparent); }
+.creatorGlyph { width: 17px; height: 17px; flex: 0 0 auto; color: #b08cff; }
+.creatorTasks { display: grid; gap: 2px; margin: 0 2px 3px 18px; border-left: 1px solid color-mix(in srgb, #a98aff 22%, transparent); padding-left: 7px; }
+.creatorTaskRow { min-width: 0; display: flex; align-items: center; border-radius: 7px; }
+.creatorTask { min-width: 0; min-height: 34px; flex: 1; border: 0; border-radius: 7px; background: transparent; color: var(--dsw-color-text-secondary); display: flex; align-items: center; gap: 7px; padding: 7px 6px; cursor: pointer; text-align: left; font-size: 12px; }
+.creatorTask span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.creatorTaskRow:hover, .activeTask { background: color-mix(in srgb, #8f6de0 15%, transparent); }
+.creatorTaskRow:hover .creatorTask, .activeTask .creatorTask { color: var(--dsw-color-text-primary); }
+.deleteCreatorTask { width: 24px; height: 24px; flex: 0 0 auto; opacity: 0; margin-right: 3px; border: 0; border-radius: 6px; background: transparent; color: var(--dsw-color-text-tertiary); display: grid; place-items: center; cursor: pointer; }
+.creatorTaskRow:hover .deleteCreatorTask, .deleteCreatorTask:focus-visible { opacity: 1; }
+.deleteCreatorTask:hover { color: var(--dsw-color-text-primary); background: var(--dsw-color-fill-secondary); }
+.creatorEmpty { padding: 7px 6px 9px; color: var(--dsw-color-text-tertiary); font-size: 11px; line-height: 1.45; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 8px 10px; color: var(--dsw-color-text-secondary); font-size: 13px; font-weight: 600; }
+.headerActions { display: flex; align-items: center; gap: 4px; }
+.importButton { min-height: 30px; border: 0; border-radius: 7px; padding: 5px 8px; background: transparent; color: var(--dsw-color-text-secondary); display: inline-flex; align-items: center; gap: 5px; cursor: pointer; font: inherit; }
+.importButton:hover { color: var(--dsw-color-text-primary); background: var(--dsw-color-fill-secondary); }
+.importButton:disabled { opacity: 0.55; cursor: default; }
+.fileInput { display: none; }
+.list { min-height: 0; overflow: auto; display: flex; flex-direction: column; gap: 7px; }
+.story { border: 1px solid transparent; border-radius: 10px; padding: 4px; transition: background 120ms ease, border-color 120ms ease; }
+.story:hover { background: color-mix(in srgb, var(--dsw-color-fill-secondary) 55%, transparent); }
+.activeStory { border-color: color-mix(in srgb, #a98aff 32%, transparent); background: color-mix(in srgb, #8f6de0 10%, transparent); }
+.storyRow { display: flex; align-items: flex-start; gap: 2px; }
+.storyMain { min-width: 0; flex: 1; border: 0; background: transparent; color: inherit; display: flex; align-items: flex-start; gap: 8px; padding: 7px 5px; text-align: left; cursor: pointer; }
+.storyMain > svg { flex: 0 0 auto; margin-top: 2px; color: #b08cff; }
+.storyText { min-width: 0; display: grid; gap: 3px; }
+.storyText strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 600; }
+.storyText small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dsw-color-text-tertiary); font-size: 11px; }
+.actions { display: flex; opacity: 0; padding-top: 4px; }
+.story:hover .actions, .activeStory .actions { opacity: 1; }
+.iconButton, .archiveScene, .railButton { border: 0; background: transparent; color: var(--dsw-color-text-tertiary); border-radius: 6px; display: grid; place-items: center; cursor: pointer; }
+.iconButton { width: 26px; height: 26px; }
+.iconButton:hover, .archiveScene:hover, .railButton:hover { color: var(--dsw-color-text-primary); background: var(--dsw-color-fill-secondary); }
+.railButton:disabled { opacity: 0.55; cursor: default; }
+.scenes { display: grid; gap: 2px; margin: 0 2px 3px 18px; border-left: 1px solid color-mix(in srgb, #a98aff 22%, transparent); padding-left: 7px; }
+.scene { min-width: 0; display: flex; align-items: center; border-radius: 7px; }
+.scene:hover, .activeScene { background: color-mix(in srgb, #8f6de0 13%, transparent); }
+.sceneMain { min-width: 0; flex: 1; display: flex; align-items: center; gap: 7px; border: 0; background: transparent; color: var(--dsw-color-text-secondary); padding: 7px 6px; cursor: pointer; text-align: left; font-size: 12px; }
+.sceneMain span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sceneDot { width: 5px; height: 5px; border-radius: 50%; background: #9f7aea; flex: 0 0 auto; }
+.emptyRun { min-height: 36px; display: flex; align-items: center; gap: 7px; border: 0; border-radius: 7px; padding: 7px 6px; background: transparent; color: var(--dsw-color-text-tertiary); cursor: pointer; text-align: left; font-size: 12px; }
+.emptyRun:hover { color: var(--dsw-color-text-primary); background: color-mix(in srgb, #8f6de0 13%, transparent); }
+.archiveScene { width: 24px; height: 24px; opacity: 0; margin-right: 3px; }
+.scene:hover .archiveScene { opacity: 1; }
+.empty { margin: 8px; padding: 18px 14px; display: grid; gap: 6px; border: 1px dashed color-mix(in srgb, #a98aff 36%, transparent); border-radius: 12px; background: color-mix(in srgb, #8f6de0 7%, transparent); color: var(--dsw-color-text-primary); text-align: left; cursor: pointer; }
+.empty span { color: var(--dsw-color-text-tertiary); font-size: 12px; line-height: 1.5; }
+.error { margin: 0 8px 8px; color: var(--dsw-color-text-error); font-size: 12px; }
+.status { margin: 0 8px 8px; color: var(--dsw-color-text-secondary); font-size: 12px; }
+.rail { height: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 14px; }
+.railButton { width: 36px; height: 36px; }

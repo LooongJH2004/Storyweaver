@@ -1,0 +1,5 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# hashes are filled after both documents are finalized.
+2026-09-01-scene-cast-actor-scheduling.md: 44ccf65d1200cf7876a05c002cde83e54d31836c
+2026-09-01-scene-cast-actor-scheduling.zh.md: a90ff9481f277e60110058e6954ef420108dddff

@@ -1,0 +1,17 @@
+- region "Group discussion console":
+  - text: Group discussion live
+  - strong: Should the red thread be cut?
+  - text: Exchange
+  - status:
+    - strong: astarion is preparing the next contribution
+    - text: 1/6 public turns · round 1/3
+  - strong: shadowheart
+  - text: Do not cut it before tracing the binding.
+  - strong: astarion
+  - text: Trace the other end first.
+  - blockquote:
+    - strong: shadowheart
+    - text: We trace where it leads before anyone reaches for a blade.
+  - text: Characters respond, hand off the floor, and converge from their own positions without an “observe again” prompt.
+  - button "Request to speak"
+  - button "Ask Director to conclude"

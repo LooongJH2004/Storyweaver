@@ -1,0 +1,144 @@
+{
+  "name": "@deepseek-ai/dsh-roleplay-core",
+  "version": "0.1.2-alpha.1",
+  "private": true,
+  "type": "module",
+  "description": "Independent roleplay commands and transactional narrative records",
+  "main": "lib/index.js",
+  "types": "lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/types.d.ts",
+      "default": "./lib/types/types.js"
+    },
+    "./invariant": {
+      "types": "./lib/types/invariant.d.ts",
+      "default": "./lib/invariant.js"
+    },
+    "./package.json": "./package.json",
+    "./knowledge": {
+      "types": "./lib/types/knowledge.d.ts",
+      "default": "./lib/knowledge.js"
+    },
+    "./dynamic-state": {
+      "types": "./lib/types/dynamic-state.d.ts",
+      "default": "./lib/dynamic-state.js"
+    },
+    "./style": {
+      "types": "./lib/types/style.d.ts",
+      "default": "./lib/style.js"
+    },
+    "./storybook": {
+      "types": "./lib/types/storybook.d.ts",
+      "default": "./lib/storybook.js"
+    },
+    "./storybook-defaults": {
+      "types": "./lib/types/storybook-defaults.d.ts",
+      "default": "./lib/storybook-defaults.js"
+    },
+    "./context-retention": {
+      "types": "./lib/types/context-retention.d.ts",
+      "default": "./lib/context-retention.js"
+    },
+    "./characters": {
+      "types": "./lib/types/characters.d.ts",
+      "default": "./lib/characters.js"
+    },
+    "./actor-model": {
+      "types": "./lib/types/actor-model.d.ts",
+      "default": "./lib/actor-model.js"
+    },
+    "./actor-events": {
+      "types": "./lib/types/actor-events.d.ts",
+      "default": "./lib/actor-events.js"
+    },
+    "./actor-state": {
+      "types": "./lib/types/actor-state.d.ts",
+      "default": "./lib/actor-state.js"
+    },
+    "./actor-continuity": {
+      "types": "./lib/types/actor-continuity.d.ts",
+      "default": "./lib/actor-continuity.js"
+    },
+    "./actor-commands": {
+      "types": "./lib/types/actor-commands.d.ts",
+      "default": "./lib/actor-commands.js"
+    },
+    "./actor-error": {
+      "types": "./lib/types/actor-error.d.ts",
+      "default": "./lib/actor-error.js"
+    },
+    "./npc-turn": {
+      "types": "./lib/types/npc-turn.d.ts",
+      "default": "./lib/npc-turn.js"
+    },
+    "./npc-protocol": {
+      "types": "./lib/types/npc-protocol.d.ts",
+      "default": "./lib/npc-protocol.js"
+    },
+    "./discussion-model": {
+      "types": "./lib/types/discussion-model.d.ts",
+      "default": "./lib/discussion-model.js"
+    },
+    "./discussion-rules": {
+      "types": "./lib/types/discussion-rules.d.ts",
+      "default": "./lib/discussion-rules.js"
+    },
+    "./roleplay-error": {
+      "types": "./lib/types/roleplay-error.d.ts",
+      "default": "./lib/roleplay-error.js"
+    },
+    "./command-inputs": {
+      "types": "./lib/types/command-inputs.d.ts",
+      "default": "./lib/command-inputs.js"
+    },
+    "./settings": {
+      "types": "./lib/types/settings.d.ts",
+      "default": "./lib/settings.js"
+    },
+    "./outline-model": {
+      "types": "./lib/types/outline-model.d.ts",
+      "default": "./lib/outline-model.js"
+    },
+    "./outline-rules": {
+      "types": "./lib/types/outline-rules.d.ts",
+      "default": "./lib/outline-rules.js"
+    },
+    "./context-recipe": {
+      "types": "./lib/types/context-recipe.d.ts",
+      "default": "./lib/context-recipe.js"
+    },
+    "./creative-settings": {
+      "types": "./lib/types/creative-settings.d.ts",
+      "default": "./lib/creative-settings.js"
+    },
+    "./creative-application": {
+      "types": "./lib/types/creative-application.d.ts",
+      "default": "./lib/creative-application.js"
+    },
+    "./creative-modules": {
+      "types": "./lib/types/creative-modules.d.ts",
+      "default": "./lib/creative-modules.js"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@deepseek-ai/dsh-brand": "workspace:^",
+    "mdast-util-from-markdown": "^2.0.3",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "workspace:^"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "workspace:^",
+    "@deepseek-ai/dsh-invariants": "workspace:^"
+  }
+}

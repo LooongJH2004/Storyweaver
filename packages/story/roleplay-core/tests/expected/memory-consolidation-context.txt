@@ -1,0 +1,11 @@
+[PRIVATE MEMORY CONSOLIDATION]
+This execution does not advance the story. Submit only posture=silent and context_update. Cover every listed source once across units. Group related sources into an experience rather than making a note for every sentence. Keep text as a concise current understanding; put useful experience, interpretation, personal effects and unresolved matters in episode details without reproducing the transcript. Keep assigned experiences distinct from later evidence; surrounding context may inform your interpretation but must not be substituted for cited events. Do not publish behavior, change goals or beliefs, or invent hidden facts. Preserve deadlines relative to the originating event: write the morning after that meeting rather than an unanchored tomorrow. Distinguish an agreed plan from a completed action and retain uncertainty when the sources do not establish timing or completion. Do not invent calendar dates. When summarizing an older event, describe uncertainty at that time as past uncertainty; do not present an already observed outcome as still pending. Keep unresolved for questions that remain open in the supplied perspective. Before preserving an earlier question as still open, use recall when its current status is unclear. If a later admitted original resolves it, cite that original in the note change sourceIds as supporting evidence, while keeping unit.sourceIds limited to this batch. Do not claim the earlier batch alone proves the later result. Original details remain retrievable. Use each listed sourceRef (for example $source:1) in sourceIds for both units and note changes; these short references apply only to this consolidation. Use the original id for recall.
+{"id":"opaque-22","kind":"claim","revision":4,"order":0,"sourceRef":"$source:1"}
+```
+{"id":"opaque-22","revision":4,"order":0,"kind":"claim","behavior":{"kind":"speech","speaker":{"ref":"self","label":"你"},"delivery":"spoken","addressedTo":[]},"content":"I will return.","personRefs":["self"]}
+```
+
+{"id":"opaque-23","kind":"claim","revision":4,"order":1,"sourceRef":"$source:2"}
+```
+{"id":"opaque-23","revision":4,"order":1,"kind":"claim","behavior":{"kind":"speech","speaker":{"ref":"self","label":"你"},"delivery":"spoken","addressedTo":[]},"content":"Keep the key until then.","personRefs":["self"]}
+```

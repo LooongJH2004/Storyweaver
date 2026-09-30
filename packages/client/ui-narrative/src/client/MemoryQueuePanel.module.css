@@ -1,0 +1,5 @@
+.job { border-top: 1px solid #8884; padding: 16px 0; }
+.job h3 { margin: 0 0 8px; font-size: 1rem; }
+.job p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.job details { padding: 8px 0; }
+.job button { margin-right: 8px; min-height: 44px; }

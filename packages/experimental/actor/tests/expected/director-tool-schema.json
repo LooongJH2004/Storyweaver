@@ -1,0 +1,1537 @@
+{
+  "type": "object",
+  "properties": {
+    "command": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "find"
+            },
+            "query": {
+              "type": "string"
+            },
+            "offset": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "operation",
+            "query",
+            "offset",
+            "limit"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "create"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "definition": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "displayName": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "publicPersona": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "appearance": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "initialKnowledge": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "text": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          },
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "identity",
+                              "belief"
+                            ]
+                          },
+                          "attitude": {
+                            "type": "string",
+                            "enum": [
+                              "believed",
+                              "doubted",
+                              "undecided",
+                              "rejected"
+                            ]
+                          },
+                          "targetActorId": {
+                            "type": "string",
+                            "description": "Exact registered ID of another person this knowledge concerns. Omit for own beliefs or general world knowledge. Never use a display name or self when creating a new person; the host has not assigned their ID yet. Nonempty string."
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "required": [
+                          "text"
+                        ]
+                      }
+                    },
+                    "commonKnowledge": {
+                      "oneOf": [
+                        {
+                          "type": "array",
+                          "description": "Character-specific ordinary knowledge. Omit or use null to inherit authored shared knowledge; [] inherits none. Supply only knowledge justified by this character's background. Learning later belongs in personal judgments, not automatic age-based lore unlocks.",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "rolePrompt": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "definition": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "description": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "group": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "text",
+                                  "number",
+                                  "boolean",
+                                  "choice",
+                                  "tags"
+                                ]
+                              },
+                              "owner": {
+                                "type": "string",
+                                "enum": [
+                                  "actor",
+                                  "world"
+                                ]
+                              },
+                              "actorId": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "targetActorId": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "targetPersonRef": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "audience": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "description": "Nonempty string."
+                                }
+                              },
+                              "minimum": {
+                                "type": "number"
+                              },
+                              "maximum": {
+                                "type": "number"
+                              },
+                              "options": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "description": "Nonempty string."
+                                }
+                              },
+                              "guidance": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name",
+                              "description",
+                              "group",
+                              "type",
+                              "owner",
+                              "actorId",
+                              "guidance"
+                            ]
+                          },
+                          "value": {
+                            "oneOf": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "description": "Nonempty string."
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "definition",
+                          "value"
+                        ]
+                      }
+                    },
+                    "capabilities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "speak",
+                          "act",
+                          "reflect",
+                          "memory",
+                          "goals",
+                          "schedule"
+                        ]
+                      }
+                    },
+                    "privateContext": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "perspective": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "coreMemories": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "content": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "importance": {
+                                "type": "integer"
+                              },
+                              "meaning": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              }
+                            },
+                            "required": [
+                              "content"
+                            ]
+                          }
+                        },
+                        "goals": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "description": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "priority": {
+                                "type": "integer"
+                              },
+                              "reason": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              }
+                            },
+                            "required": [
+                              "description"
+                            ]
+                          }
+                        },
+                        "intentions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                              "description": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "trigger": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              },
+                              "commitment": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "description",
+                              "trigger"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "actingGuidance": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "speechStyle": {
+                          "type": "string"
+                        },
+                        "habitualActions": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "decisionPrinciples": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "emotionalTendencies": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "relationshipVoices": {
+                          "type": "string"
+                        },
+                        "underPressure": {
+                          "type": "string"
+                        },
+                        "lengthPreference": {
+                          "type": "string"
+                        },
+                        "taboos": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "examples": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "additionalInstructions": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "displayName",
+                    "publicPersona",
+                    "rolePrompt",
+                    "capabilities",
+                    "actingGuidance"
+                  ]
+                },
+                "purpose": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                },
+                "sourceRefs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Nonempty string."
+                  }
+                },
+                "location": {
+                  "type": "string"
+                },
+                "importance": {
+                  "type": "string",
+                  "enum": [
+                    "main",
+                    "supporting"
+                  ]
+                }
+              },
+              "required": [
+                "definition",
+                "purpose",
+                "sourceRefs",
+                "location",
+                "importance"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "stage"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                },
+                "location": {
+                  "type": "string"
+                },
+                "present": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Nonempty string."
+                  }
+                },
+                "appearances": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "actorId": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "key": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "label": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      }
+                    },
+                    "required": [
+                      "actorId",
+                      "key",
+                      "label"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "id",
+                "location",
+                "present",
+                "appearances"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "outline"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "expectedRevision": {
+                  "type": "integer"
+                },
+                "reason": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                },
+                "premise": {
+                  "type": "string"
+                },
+                "themes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "text": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "text"
+                    ]
+                  }
+                },
+                "hardConstraints": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "text": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "text"
+                    ]
+                  }
+                },
+                "arcs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "intent": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "planned",
+                          "active",
+                          "resolved",
+                          "abandoned"
+                        ]
+                      },
+                      "tensions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "desiredQuestions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "completionSignals": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "intent",
+                      "status",
+                      "tensions",
+                      "desiredQuestions",
+                      "completionSignals"
+                    ]
+                  }
+                },
+                "beats": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "arcId": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "intent": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "candidate",
+                          "armed",
+                          "active",
+                          "resolved",
+                          "skipped",
+                          "retired"
+                        ]
+                      },
+                      "priority": {
+                        "type": "integer"
+                      },
+                      "prerequisiteLedgerFacts": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "prerequisiteBeatIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "triggerConditions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "externalPressure": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "revealCandidates": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "exitConditions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "fallbackOptions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "resolvedByEventRefs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "intent",
+                      "status",
+                      "priority",
+                      "prerequisiteLedgerFacts",
+                      "prerequisiteBeatIds",
+                      "triggerConditions",
+                      "externalPressure",
+                      "revealCandidates",
+                      "exitConditions",
+                      "fallbackOptions",
+                      "resolvedByEventRefs"
+                    ]
+                  }
+                },
+                "foreshadows": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "narrativePurpose": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "planned",
+                          "available",
+                          "planted",
+                          "reinforced",
+                          "paid_off",
+                          "abandoned"
+                        ]
+                      },
+                      "seedCandidates": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "intendedPayoff": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "revealConditions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "earliestBeatId": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "latestBeatId": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "ambiguityNotes": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "dependencyIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "plantedEventRefs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      },
+                      "payoffEventRefs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "narrativePurpose",
+                      "status",
+                      "seedCandidates",
+                      "intendedPayoff",
+                      "revealConditions",
+                      "ambiguityNotes",
+                      "dependencyIds",
+                      "plantedEventRefs",
+                      "payoffEventRefs"
+                    ]
+                  }
+                },
+                "mysteries": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "question": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "open",
+                          "answered",
+                          "retired"
+                        ]
+                      },
+                      "answerIntent": {
+                        "type": "string"
+                      },
+                      "evidenceEventRefs": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Nonempty string."
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "question",
+                      "status",
+                      "answerIntent",
+                      "evidenceEventRefs"
+                    ]
+                  }
+                },
+                "clocks": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "progress": {
+                        "type": "integer"
+                      },
+                      "limit": {
+                        "type": "integer"
+                      },
+                      "trigger": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "consequence": {
+                        "type": "string",
+                        "description": "Nonempty string."
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "paused",
+                          "resolved"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "progress",
+                      "limit",
+                      "trigger",
+                      "consequence",
+                      "status"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "expectedRevision",
+                "reason"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "context-update"
+            },
+            "input": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "sourceIds": {
+                    "type": "array",
+                    "description": "Sources processed by this unit. Each represented source must also appear in at least one retained change below.",
+                    "items": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    }
+                  },
+                  "disposition": {
+                    "type": "string",
+                    "enum": [
+                      "represented",
+                      "archive"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Nonempty string."
+                  },
+                  "changes": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "operation": {
+                          "type": "string",
+                          "description": "add creates a note with a system-generated ID: omit noteId and expectedRevision. Every other operation targets an existing note and requires both fields; keep its existing kind. revise updates an understanding that still applies. resolve records that a question has been answered or an obligation completed. withdraw records that you no longer endorse a claim. replace supersedes the target with a new note. archive removes the note from ordinary context without deleting history. Preserve conditional triggers: after an observed completion, an earlier fallback for non-completion is historical, not a new ongoing duty. Check related retained notes when updating the same obligation; do not resolve unrelated promises or infer success from an attempt alone.",
+                          "enum": [
+                            "add",
+                            "revise",
+                            "resolve",
+                            "withdraw",
+                            "replace",
+                            "archive"
+                          ]
+                        },
+                        "noteId": {
+                          "type": "string",
+                          "description": "Existing note ID copied from your retained notes, not a source ID or recall reference. Omit for add; never invent an ID. Nonempty string."
+                        },
+                        "expectedRevision": {
+                          "type": "integer",
+                          "description": "Exact revision of the targeted note, not the story revision. Omit for add."
+                        },
+                        "kind": {
+                          "type": "string",
+                          "enum": [
+                            "fact",
+                            "claim",
+                            "promise",
+                            "condition",
+                            "question",
+                            "clue",
+                            "player-direction",
+                            "outcome"
+                          ]
+                        },
+                        "text": {
+                          "type": "string",
+                          "description": "Write the lasting takeaway first, usually in one or two sentences. Actors retain a bounded belief, expectation or intended choice: a useful form is \"I now expect ..., so ...; ... remains uncertain\", using only justified parts. Directors retain the established situation, attributed commitments and unresolved consequences, without adopting an actor's private belief. Combine related sources around that takeaway. Put the supporting event sequence in optional episode.experience or leave it in recallable originals, rather than opening with who said what and then retelling the scene. Keep attribution, negation, quantities and deadlines here when they change the takeaway. Preserve attempts versus observed results; never invent supporting experiences. Remembering an event in first person does not make the observer its agent: preserve who acted and whether the action was intentional. Your own later retelling is a claim, not independent evidence that you performed a witnessed action. This is a writing guide, not a hard length limit. Nonempty string."
+                        },
+                        "sourceIds": {
+                          "type": "array",
+                          "description": "Evidence retained by this particular note. Required on each change even when the unit already lists the same sources. During private consolidation, keep unit.sourceIds limited to the assigned batch. A note may additionally cite other admitted originals retrieved through recall to check whether an earlier question or obligation is still open; put their original IDs here, not in unit.sourceIds. Supporting citations do not mark those extra sources processed. Distinguish the original experience from the later evidence and preserve who observed or claimed each part.",
+                          "items": {
+                            "type": "string",
+                            "description": "Nonempty string."
+                          }
+                        },
+                        "episode": {
+                          "type": "object",
+                          "description": "Optional supporting detail: experience, interpretation, personal effect and still-open questions, without repeating the brief. For add or replace, omit when the brief is sufficient. For revise, resolve, withdraw or archive, omitting episode preserves its previous contents unchanged, including unresolved questions. The brief unresolvedCount counts questions stored in the details, not a fresh judgment of whether they remain open. Changing status alone does not clear them. Before changing a note with a detailReference, read that reference with your available recall operation if its details are not already available. Supply a complete revised episode when the new brief or status makes any detail outdated; keep supported experience, update changed interpretations or effects, and remove answered questions from unresolved (use [] when none remain). Record only the supplied perspective; interpretation is not world truth.",
+                          "additionalProperties": false,
+                          "properties": {
+                            "topic": {
+                              "type": "string",
+                              "description": "Nonempty string."
+                            },
+                            "experience": {
+                              "type": "string",
+                              "description": "Only the specific evidence needed to revisit the brief, without repeating it or retelling each source. Distinguish what you witnessed, said, attempted and received as a result: an accepted action submission alone does not prove completion. Keep any retained quantities, durations, negation and event order exact. Later self-reports remain claims, not replacements for observations. Do not infer earlier instructions from later choices. Leave incidental detail in the recallable originals. Nonempty string."
+                            },
+                            "interpretation": {
+                              "type": "string",
+                              "description": "Optional reasoning behind your understanding, including mistakes or uncertainty. Omit when the brief already explains it. Do not repeat the brief or invent evidence, unseen rules or events. Nonempty string."
+                            },
+                            "impact": {
+                              "type": "string",
+                              "description": "Optional additional effects on trust, expectations, commitments or choices. Omit when already captured in the brief or no further effect occurred. Do not repeat the brief or invent an effect or completed action. Nonempty string."
+                            },
+                            "unresolved": {
+                              "type": "array",
+                              "description": "Questions still open now in the supplied perspective. Use [] when none remain. Put past uncertainty in experience, not here; do not turn every untested possibility into a pending task.",
+                              "items": {
+                                "type": "string",
+                                "description": "Nonempty string."
+                              }
+                            }
+                          },
+                          "required": [
+                            "topic",
+                            "experience",
+                            "unresolved"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "operation",
+                        "kind",
+                        "text",
+                        "sourceIds"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "sourceIds",
+                  "disposition",
+                  "reason",
+                  "changes"
+                ]
+              }
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "recall"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "query": {
+                  "type": "string",
+                  "description": "Search text, or one exact record reference to read that record. All space-separated terms must match the same record. Put a known memory or source ID here, not in sourceId."
+                },
+                "offset": {
+                  "type": "integer",
+                  "description": "Start at 0 for a new query; copy the returned offset when continuing."
+                },
+                "limit": {
+                  "type": "integer"
+                },
+                "characterOffset": {
+                  "type": "integer",
+                  "description": "Omit for a new query. Copy from the returned continuation to read the remaining text."
+                },
+                "sourceId": {
+                  "type": "string",
+                  "description": "Continuation check only, not a record selector. Omit for a new query. Copy only from a returned continuation with its original query, offset and characterOffset. Nonempty string."
+                }
+              },
+              "required": [
+                "query",
+                "offset",
+                "limit"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "style"
+            },
+            "input": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "scope": {
+                      "type": "string",
+                      "const": "story"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "profile": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "director"
+                            },
+                            "guidance": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "narrativeStyle": {
+                                  "type": "string"
+                                },
+                                "atmosphereAndPacing": {
+                                  "type": "string"
+                                },
+                                "viewpoint": {
+                                  "type": "string"
+                                },
+                                "lengthPreference": {
+                                  "type": "string"
+                                },
+                                "sensoryDetail": {
+                                  "type": "string"
+                                },
+                                "focus": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "avoid": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "examples": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "additionalInstructions": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "guidance"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "kind": {
+                              "type": "string",
+                              "const": "actor"
+                            },
+                            "guidance": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "properties": {
+                                "speechStyle": {
+                                  "type": "string"
+                                },
+                                "habitualActions": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "decisionPrinciples": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "emotionalTendencies": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "relationshipVoices": {
+                                  "type": "string"
+                                },
+                                "underPressure": {
+                                  "type": "string"
+                                },
+                                "lengthPreference": {
+                                  "type": "string"
+                                },
+                                "taboos": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "examples": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "description": "Nonempty string."
+                                  }
+                                },
+                                "additionalInstructions": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "kind",
+                            "guidance"
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "scope",
+                    "key"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "scope": {
+                      "type": "string",
+                      "const": "scene"
+                    },
+                    "key": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "sceneId": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "instruction": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "scope",
+                    "key",
+                    "sceneId",
+                    "instruction"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "discuss"
+            },
+            "input": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "topic": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                },
+                "participantIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "description": "Nonempty string."
+                  }
+                },
+                "maxRounds": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "topic",
+                "participantIds",
+                "maxRounds"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "discussion-control"
+            },
+            "input": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "operation": {
+                      "type": "string",
+                      "const": "request"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "expectedRequestRevision": {
+                      "type": "integer"
+                    },
+                    "decision": {
+                      "type": "string",
+                      "enum": [
+                        "accept",
+                        "decline",
+                        "defer"
+                      ]
+                    },
+                    "reason": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    }
+                  },
+                  "required": [
+                    "operation",
+                    "requestId",
+                    "expectedRequestRevision",
+                    "decision",
+                    "reason"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "operation": {
+                      "type": "string",
+                      "const": "close"
+                    },
+                    "discussionId": {
+                      "type": "string",
+                      "description": "Nonempty string."
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "completed",
+                        "cancelled"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "operation",
+                    "discussionId",
+                    "status"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "input"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "operation": {
+              "type": "string",
+              "const": "finish"
+            },
+            "actors": {
+              "type": "array",
+              "description": "Present AI actors in execution order, each at most once. When the next speaker depends on what someone actually says or does, dispatch that person alone; a configured Director continuation may choose another speaker after the accepted response. Batch only actors with independent reasons to act now. Being present is not a reason to speak. Use a discussion for an exchange that needs repeated replies.",
+              "items": {
+                "type": "string",
+                "description": "Nonempty string."
+              }
+            },
+            "advanceDiscussion": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "operation",
+            "actors",
+            "advanceDiscussion"
+          ]
+        }
+      ],
+      "description": "Exactly ONE scheduling operation object. Use style with input.scope=scene to give actor:ID a performance cue, desired development or response length before dispatch. This is guidance, not evidence or automatic speech. Publish narration and world evidence with director_observe. Do not nest another command or mix operations. find uses query/offset/limit directly; finish uses actors/advanceDiscussion directly.",
+      "examples": [
+        {
+          "operation": "create",
+          "input": {
+            "definition": {
+              "displayName": "Gatekeeper",
+              "appearance": "A hooded guard",
+              "publicPersona": "Guards the entrance.",
+              "rolePrompt": "",
+              "capabilities": [
+                "speak",
+                "act",
+                "reflect",
+                "memory"
+              ],
+              "actingGuidance": {},
+              "initialKnowledge": [
+                {
+                  "text": "I remember the entrance password.",
+                  "kind": "belief",
+                  "attitude": "believed"
+                }
+              ]
+            },
+            "purpose": "Answer visitors at the gate.",
+            "sourceRefs": [],
+            "location": "Gate",
+            "importance": "supporting"
+          }
+        },
+        {
+          "operation": "discuss",
+          "input": {
+            "topic": "How should we respond?",
+            "participantIds": [
+              "first-present-id",
+              "second-present-id"
+            ],
+            "maxRounds": 4
+          }
+        },
+        {
+          "operation": "style",
+          "input": {
+            "scope": "scene",
+            "sceneId": "current-scene-id",
+            "key": "actor:registered-actor-id",
+            "instruction": "Respond to the person or change that matters to you now; choose your own words and action without a report."
+          }
+        },
+        {
+          "operation": "finish",
+          "actors": [
+            "first-present-id"
+          ],
+          "advanceDiscussion": false
+        },
+        {
+          "operation": "finish",
+          "actors": [],
+          "advanceDiscussion": false
+        },
+        {
+          "operation": "finish",
+          "actors": [],
+          "advanceDiscussion": true
+        }
+      ]
+    }
+  },
+  "required": [
+    "command"
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "type": "object",
+  "properties": {
+    "summary": {
+      "type": "string",
+      "description": "Short nonempty summary of this objective event."
+    },
+    "content": {
+      "type": "string",
+      "description": "Objective event or outcome only. No invented character speech, decisions, emotions, or disclosure of a discovery."
+    },
+    "settles": {
+      "type": "array",
+      "description": "Choose explicitly for every event: list the exact IDs of PENDING WORLD ATTEMPTS resolved here, including unsuccessful or inconclusive results; use [] only when none is resolved. Describing an outcome in content or narration does not settle its attempt. Each attempt is settled once; shared or deliveries must give its actor the perceptible result in this same call before a response can be scheduled.",
+      "items": {
+        "type": "string",
+        "description": "Nonempty string."
+      }
+    },
+    "narration": {
+      "type": "string",
+      "description": "Fully developed player-facing Markdown narration of the observable event: its cause, visible change and practical consequences, in paragraphs. Follow configured length and pacing; do not compress it into summary or duplicate content. Character performances follow through their executors and can be guided with style. Optional for non-public settlement."
+    },
+    "shared": {
+      "type": "object",
+      "description": "Optional shared perception: write content once with actorIds, kind and sourceRefs. Only listed recipients receive it. This is perceived content, not the full world truth or automatic player narration. For a perceptible time jump or relocation, explicitly tell affected actors the new time or location here or in deliveries; narration and scene cues alone do not update their perceived situation.",
+      "additionalProperties": false,
+      "properties": {
+        "actorIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Nonempty string."
+          }
+        },
+        "content": {
+          "type": "string",
+          "description": "Nonempty string."
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "observation",
+            "claim",
+            "report"
+          ]
+        },
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Nonempty string."
+          }
+        }
+      },
+      "required": [
+        "actorIds",
+        "content",
+        "kind",
+        "sourceRefs"
+      ]
+    },
+    "deliveries": {
+      "type": "array",
+      "description": "Recipient-specific perceptions, at most one entry per actor. With shared perception, mode=supplement (or omitted) adds a separate evidence item after shared content; mode=replace gives that actor only this entry. Replace requires the actor in shared.actorIds. Keep distinct observation/claim/report provenance. Use [] when shared is sufficient or nobody receives evidence.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "actorId": {
+            "type": "string",
+            "description": "Nonempty string."
+          },
+          "content": {
+            "type": "string",
+            "description": "Nonempty string."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "observation",
+              "claim",
+              "report"
+            ]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "supplement",
+              "replace"
+            ]
+          },
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Nonempty string."
+            }
+          }
+        },
+        "required": [
+          "actorId",
+          "content",
+          "kind",
+          "sourceRefs"
+        ]
+      }
+    },
+    "state": {
+      "type": "array",
+      "description": "Objective state changes only; [] when unchanged.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "fieldId": {
+            "type": "string",
+            "description": "Nonempty string."
+          },
+          "expectedRevision": {
+            "type": "integer"
+          },
+          "definition": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "name": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "description": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "group": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "number",
+                  "boolean",
+                  "choice",
+                  "tags"
+                ]
+              },
+              "owner": {
+                "type": "string",
+                "enum": [
+                  "actor",
+                  "world"
+                ]
+              },
+              "actorId": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "targetActorId": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "targetPersonRef": {
+                "type": "string",
+                "description": "Nonempty string."
+              },
+              "audience": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                }
+              },
+              "minimum": {
+                "type": "number"
+              },
+              "maximum": {
+                "type": "number"
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                }
+              },
+              "guidance": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "description",
+              "group",
+              "type",
+              "owner",
+              "actorId",
+              "guidance"
+            ]
+          },
+          "value": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Nonempty string."
+                }
+              }
+            ]
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Nonempty string."
+          },
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Nonempty string."
+            }
+          }
+        },
+        "required": [
+          "fieldId",
+          "expectedRevision",
+          "reason",
+          "sourceRefs"
+        ]
+      }
+    }
+  },
+  "required": [
+    "summary",
+    "content",
+    "settles",
+    "deliveries",
+    "state"
+  ]
+}

@@ -1,0 +1,9 @@
+version: 1
+scenario: roleplay-discussion-console
+profile: web
+composition: web-roleplay
+recording: authored
+header:
+  class: web-default
+session:
+  source: ../seeded-history/session.jsonl

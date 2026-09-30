@@ -1,0 +1,10 @@
+[
+  {
+    "id": "consolidation-pending",
+    "role": "user",
+    "sources": [
+      "try-door"
+    ],
+    "content": "[ASSIGNED ATTEMPTS STILL AWAITING WORLD FEEDBACK]\n{\"sourceIds\":[\"try-door\"]}\nThese attempts have no accepted result at this request revision. Remember the attempt or intention, not a completed outcome. This status does not mean failure. Absence from this list does not establish success; use the received result when available."
+  }
+]

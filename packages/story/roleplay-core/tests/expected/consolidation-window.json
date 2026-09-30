@@ -1,0 +1,10 @@
+[
+  {
+    "id": "consolidation-window",
+    "role": "user",
+    "sources": [
+      "reply"
+    ],
+    "content": "[LATER RECORDS AVAILABLE FOR RECALL]\n{\"batchThrough\":{\"revision\":3,\"order\":0},\"laterOriginalCount\":2,\"nextOriginal\":{\"id\":\"reply\",\"kind\":\"claim\",\"revision\":3,\"order\":1}}\nThis batch is earlier than other records you can recall. Before treating an old question or obligation as still open, check later evidence when needed. Put nextOriginal.id in the recall query to start reading after this batch. This pointer is not evidence of an outcome. Keep processed unit.sourceIds unchanged; cite any recalled supporting original only in the note change sourceIds."
+  }
+]

@@ -1,0 +1,18 @@
+# Eight-dimension voice rubric
+
+Score each actor turn in its scene context on the first five dimensions, and each complete scene on the final three. Use 2 for grounded, natural behavior, 1 for mixed evidence, and 0 for a clear failure. Cite a turn/event ID and one concrete reason for every score. A fact or privacy failure is separately flagged as a hard failure even when style scores are high. Do not infer quality from shortness, ornate language, or a repeated word alone.
+
+| Dimension | 2 | 1 | 0 |
+| --- | --- | --- | --- |
+| 现场回应 | Responds to the prior turn, current action, or relationship with a clear addressee and purpose. | Relevant but repeats known facts or shifts away early. | Ignores the immediate scene and acts like a task list. |
+| 角色辨识度 | A concrete choice, scope, or uncertainty naturally reflects this actor's admitted attention, knowledge, history, or relationships; differences may be subtle. | Natural and compatible, but participation of personal sources is unclear. | A relevant admitted motive or cognitive difference is contradicted or persistently ignored without support. |
+| 说话的社会目的 | Speech attempts to hide, test, comfort, request, refuse, persuade, or alter a relationship. | Has a purpose but overexplains motives and next steps. | Summarizes the plot or explains a theme to the reader. |
+| 表达节制 | Says only what the moment calls for; silence or deflection has a visible consequence. | Includes some repeated explanation or tidy step lists. | Repeats duties and risks, or several actors restate the same plan. |
+| 认知可信度 | Distinguishes seen, heard, remembered, inferred, and decided facts. | A detail has unclear provenance but changes no settled fact. | Invents precise facts, knows private information, or treats uncertainty as settled. |
+| 文体与镜头 | Rhythm, imagery, and narrative distance serve this scene and chosen style. | Mostly apt with occasional generic poetic or summary lines. | Scenes use the same expressive filter; dialogue reads like narration. |
+| 惯用修辞 | Figures and repeated phrases have a local character or scene reason. | Some repeated patterns without dominating the scene. | Interchangeable metaphors, parallelism, or aphoristic endings recur across actors/scenes. |
+| 语义落点趋同 | Shared or differing choices follow the actors' relevant interests, knowledge and scene constraints; tension may remain. | Similar conclusions have mixed evidence about their reasons or costs. | Actors repeatedly ignore relevant incompatible interests or different admitted facts to reach a generic plan or lesson. |
+
+For semantic convergence, reduce each turn to “claim–reason–action” before comparing. Necessary coordination during a repair scene is appropriate when it changes what someone does. A quiet scene may stay with a letter, meal, or relationship until its registered transition condition occurs. Evaluate growth across later scenes by tracing changed trust and choices back to prior events; fixed catchphrases are not growth.
+
+Reasonable similarity, agreement and help are valid character choices. Neither shared wording nor a contribution that could suit another actor establishes failure; supported distinctions need not be exclusive. Score the role's actual choice in its own visible context, including the recipient, cost, commitment and restraint. Props, gestures, background quotations and explanations of personality alone do not establish source participation. Mark memory influence as untested when the scene offers no relevant memory opportunity; do not require a past-event reference. Apply this interpretation to newly registered rounds and preserve frozen historical scores.

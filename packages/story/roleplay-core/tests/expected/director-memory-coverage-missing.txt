@@ -1,0 +1,1 @@
+Consolidation must cover its exact source batch. Coverage errors: {"missing":["<assigned>"],"unexpected":[],"duplicated":[]}. No changes were submitted. Send one complete context-update covering only the assigned sources once across units; do not add other visible sources or existing note IDs. After that update succeeds, finish with actors=[] and advanceDiscussion=false.

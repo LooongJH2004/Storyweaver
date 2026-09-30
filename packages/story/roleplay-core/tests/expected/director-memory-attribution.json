@@ -1,0 +1,29 @@
+[
+  {
+    "kind": "claim",
+    "order": 0,
+    "content": {
+      "actorId": "a",
+      "origin": "actor",
+      "sceneId": "inn",
+      "kind": "speech",
+      "text": "The notice says keep it dry; I have not tested it.",
+      "delivery": "whispered",
+      "addressedTo": [
+        "b"
+      ]
+    }
+  },
+  {
+    "kind": "action-attempt",
+    "order": 1,
+    "content": {
+      "actorId": "a",
+      "origin": "actor",
+      "sceneId": "inn",
+      "kind": "action-attempt",
+      "attempt": "Look under the tray.",
+      "targets": []
+    }
+  }
+]

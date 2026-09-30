@@ -1,0 +1,632 @@
+.surface {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-roleplay-canvas);
+  height: 100%;
+  min-width: 0;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.turnUsage { min-height: 64px; }
+.executionTiming { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0.25rem 0; font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
+.preparation { margin: 24px 0; padding: 20px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 12px; }
+.preparation progress { display: block; width: 100%; height: 6px; margin: 16px 0; accent-color: var(--dsw-roleplay-accent); }
+.preparation > details > p { margin-bottom: 0; font-size: 13px; color: var(--dsw-alias-label-secondary); }
+.preparation > details > summary { cursor: pointer; list-style: disclosure-closed; }
+.preparation > details[open] > summary { list-style: disclosure-open; }
+.preparation > details > summary::before { content: '›'; font-size: 20px; line-height: 1; }
+.preparation > details[open] > summary::before { transform: rotate(90deg); }
+.preparation > details > summary strong { margin-right: auto; }
+.preparation .recordBody { line-height: 1.8; }
+.sidebar { display: flex; flex-direction: column; gap: 12px; border-right: 1px solid var(--dsw-roleplay-accent-border); }
+.sidebar h1 { font: 600 24px var(--dsw-roleplay-font-story); margin: 12px 0; }
+.sidebar h2 { font-size: 12px; font-weight: 500; color: var(--dsw-alias-label-secondary); }
+.sidebar footer { margin-top: auto; }
+:is(.surface, .creatorControls) button:where(:not(.composerModel *)) {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-alias-button-elevated-fill);
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 10px;
+  min-height: 40px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+:is(.surface, .creatorControls) button:where(:not(.composerModel *)):hover:not(:disabled) { background: var(--dsw-alias-interactive-bg-hover); }
+:is(.surface, .creatorControls) button:where(:not(.composerModel *)):disabled, .sidebar button:disabled { opacity: 0.5; cursor: default; }
+:is(.surface, .creatorControls) button:where(:not(.composerModel *))[aria-pressed="true"], .sidebar button[aria-current="page"] { outline: 2px solid var(--dsw-roleplay-accent); }
+:is(.surface, .creatorControls) input, :is(.surface, .creatorControls) textarea, :is(.surface, .creatorControls) select {
+  color: var(--dsw-alias-label-primary);
+  background: var(--dsw-roleplay-card);
+  border: 1px solid var(--dsw-alias-border-l2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  line-height: 1.7;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+:is(.surface, .creatorControls) label { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+:is(.surface, .creatorControls) label:has(> input[type='checkbox']) { flex-direction: row; align-items: center; }
+:is(.surface, .creatorControls) input[type='checkbox'] { width: auto; flex: none; accent-color: var(--dsw-roleplay-accent); }
+.navigationDock { position: sticky; top: 0; z-index: 8; background: var(--dsw-roleplay-canvas); }
+.navigationDock > .navigation { position: static; background: transparent; backdrop-filter: none; }
+.returnBar { padding: 8px 24px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.surface .returnBar button { min-height: 44px; font-size: 14px; }
+.navigation { position: sticky; top: 0; z-index: 4; background: color-mix(in srgb, var(--dsw-roleplay-canvas) 94%, transparent); backdrop-filter: blur(16px); padding: 16px 28px;
+  display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+:is(.surface, .creatorControls) textarea { width: 100%; min-height: 90px; resize: vertical; }
+:is(.surface, .creatorControls) pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 60vh; overflow: auto; }
+:is(.surface, .creatorControls) small { display: block; color: var(--dsw-alias-label-secondary); line-height: 1.6; }
+:is(.surface, .creatorControls) h3 { font-size: 18px; margin: 0 0 12px; }
+:is(.surface, .creatorControls) summary { cursor: pointer; line-height: 1.6; }
+:is(.surface, .creatorControls) button:where(:not(.composerModel *)):focus-visible, :is(.surface, .creatorControls) summary:focus-visible, .sidebar button:focus-visible,
+:is(.surface, .creatorControls) textarea:focus-visible, :is(.surface, .creatorControls) input:focus-visible, :is(.surface, .creatorControls) select:focus-visible {
+  outline: 2px solid var(--dsw-roleplay-accent); outline-offset: 3px;
+}
+.toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+.reading { width: min(100% - 64px, var(--dsh-chat-content-width)); margin: 0 auto; padding: 24px 0; min-width: 0; }
+.prose { color: var(--dsw-roleplay-reading-ink); width: 100%; margin: 0 auto; font-family: var(--dsw-font-family); line-height: 1.9;
+  font-size: var(--dsh-content-font-size, 16px); }
+.prose p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.prose section { margin-bottom: 32px; }
+.composer { position: sticky; bottom: 16px; z-index: 7; width: min(100% - 32px, calc(var(--dsh-chat-content-width) + 32px));
+  overflow-anchor: none;
+  height: var(--narrative-composer-height, 256px); min-height: 224px; box-sizing: border-box;
+  display: flex; flex-direction: column; margin: 24px auto 16px; padding: 18px 20px 10px;
+  background: var(--dsw-roleplay-composer); border: 1px solid var(--dsw-roleplay-hairline); border-radius: 16px;
+  box-shadow: 0 12px 48px var(--dsw-roleplay-shadow), 0 1px 3px var(--dsw-roleplay-shadow);
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2); --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2); }
+.editor { max-width: 1000px; margin: 0 auto; }
+.storyUsage { flex-shrink: 0; min-width: 0; --dsh-composer-side-clearance: 0px; }
+.card {
+  padding: 20px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 14px; margin: 16px 0;
+  background: var(--dsw-roleplay-card);
+  overflow-wrap: anywhere;
+}
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+.cardHeader { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; line-height: 1.6; }
+.badge { display: inline-block; font: 500 12px/1.5 system-ui, sans-serif; padding: 3px 9px; border-radius: 100px;
+  color: var(--dsw-roleplay-accent-ink); background: var(--dsw-roleplay-accent-soft); }
+.metadata, .trueName { color: var(--dsw-alias-label-secondary); font-size: 13px; line-height: 1.7; }
+.personLabel { overflow-wrap: anywhere; }
+.trueName { display: inline; margin-left: 6px; font-weight: 400; font-family: system-ui, sans-serif; }
+.recordText { white-space: pre-wrap; line-height: 1.8; overflow-wrap: anywhere; margin: 12px 0; }
+.panel { margin: 28px 0; }
+.empty { padding: 20px; border-radius: 12px; background: var(--dsw-roleplay-accent-soft); color: var(--dsw-alias-label-secondary); line-height: 1.7; }
+.disclosure { margin: 16px 0 0; border-top: 1px solid var(--dsw-roleplay-accent-border); padding-top: 12px; }
+.disclosure > summary { color: var(--dsw-roleplay-accent-ink); font-size: 13px; }
+.historyEntry { border-left: 2px solid var(--dsw-roleplay-accent-border); padding: 8px 16px; margin: 16px 0; }
+.facts { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 16px; font-size: 13px; line-height: 1.7; }
+.facts dt { color: var(--dsw-alias-label-secondary); }
+.facts dd { margin: 0; overflow-wrap: anywhere; }
+.storyCard { border-left: 3px solid var(--dsw-roleplay-accent); }
+.storyCard[data-kind='action'] { border-left-style: dashed; }
+.storyCard[data-kind='action'] > p { font-style: italic; }
+.storyCard[data-kind='narration'] { border-left-color: var(--dsw-roleplay-accent-border); }
+.instances { display: grid; gap: 12px; }
+.instances button { text-align: left; }
+.instances small { display: block; margin-top: 8px; }
+.surface .document { min-height: 320px; font-family: monospace; }
+.surface { padding: 0; scroll-padding-top: 90px; scrollbar-gutter: stable;
+  --dsh-chat-content-width: clamp(680px, 64vw, 920px); font: 14px/1.6 var(--dsw-font-family); }
+.surface[data-panel='play'] { display: flex; flex-direction: column; }
+.surface[data-panel='play'] > * { flex-shrink: 0; }
+.surface[data-panel='play'] > .reading { flex: 1 0 auto; }
+.readingColumn { min-width: 0; }
+.readingColumn:has(.opening):not(:has(.liveTurn)) { display: grid; place-content: center; height: 100%; }
+.liveTurn { width: 100%; min-width: 0; margin: 0 0 34px; }
+.liveDraft { width: 100%; min-width: 0; }
+.surface > .editor, .surface > section:not(.opening) { padding: 24px; }
+.storyHeading { flex: 1; min-width: 0; }
+.storyHeading > strong { font-size: 16px; font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.storyHeading small { font-size: 12px; margin-top: 5px; }
+.headerActions { display: flex; gap: 6px; }
+:is(.surface, .creatorControls) .iconButton { display: grid; place-items: center; padding: 6px; border: 0; background: transparent; border-radius: 50%; }
+.headerActions button, .sceneBar button, .modeBar button { background: transparent; border-color: transparent; }
+.headerActions button[aria-pressed='true'], .modeBar button[aria-pressed='true'] {
+  outline: none; background: var(--dsw-roleplay-accent-soft); border-color: var(--dsw-roleplay-accent-border); }
+.sceneBar { width: min(100% - 48px, 1000px); margin: 12px auto 0; display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.phase { display: inline-flex; align-items: center; gap: 8px; }
+.phase::before { content: ''; width: 6px; height: 6px; background: var(--dsw-roleplay-accent); border-radius: 50%; }
+.phase[data-running='true']::before { animation: breathe 1.4s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .phase[data-running='true']::before { animation: none; } }
+.opening { max-width: 680px; margin: 20px auto 32px; text-align: center; padding: 30px 16px; }
+.openingMark { color: var(--dsw-roleplay-accent); font-size: 36px; margin-bottom: 16px; }
+.opening > h1 { font: 600 clamp(26px, 3vw, 36px)/1.5 var(--dsw-roleplay-font-story); margin: 10px 0 22px; }
+.opening > p { font-family: var(--dsw-roleplay-font-story); line-height: 1.9; white-space: pre-wrap; }
+.opening > .metadata { font-family: inherit; }
+.failure { width: min(100% - 48px, 860px); margin: 20px auto; padding: 18px 20px; box-sizing: border-box;
+  border: 1px solid var(--dsw-roleplay-accent-border); border-left: 3px solid var(--dsw-roleplay-accent);
+  border-radius: 12px; background: var(--dsw-roleplay-accent-soft); overflow-wrap: anywhere; }
+.failure p { line-height: 1.7; font-size: 14px; }
+.composerBody { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.composerBody > * { flex-shrink: 0; }
+.composerModes { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.modeBar { display: flex; flex-wrap: wrap; gap: 4px; width: fit-content; padding: 0; border: 0; background: transparent; }
+.surface .modeBar button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 34px; padding: 6px 10px;
+  font-size: 12px; color: var(--dsw-alias-label-secondary); border: 1px solid transparent; border-radius: 7px; background: transparent; }
+.modeBar button > span { display: flex; }
+.surface .modeBar button[aria-pressed='true'] { outline: none; color: var(--dsw-roleplay-accent-ink);
+  background: var(--dsw-roleplay-accent-soft); border-color: var(--dsw-roleplay-accent-border); }
+.surface .modeBar button:hover:not(:disabled) { background: var(--dsw-roleplay-control-hover); }
+.modeSelect { display: none; }
+.modeDescription { margin: 8px 10px 0; font-size: 12px; line-height: 1.6; color: var(--dsw-alias-label-secondary); }
+.surface .composerField { display: flex; flex: 1 0 78px; box-sizing: border-box; gap: 4px; margin: 0; padding: 12px 10px 8px;
+  border: 0; border-radius: 0; background: transparent; min-height: 0; }
+.composerField > span { font: 500 12px/1.6 var(--dsw-font-family); color: var(--dsw-alias-label-secondary); }
+.composer textarea { flex: 1; width: 100%; height: auto; min-height: 30px; max-height: none; resize: none;
+  border: 0; border-radius: 0; background: transparent; padding: 2px 0; font: 15px/1.8 var(--dsw-font-family); color: var(--dsw-roleplay-reading-ink); }
+.composer textarea::placeholder { color: var(--dsw-alias-label-secondary); opacity: .75; }
+.composer:focus-within { border-color: var(--dsw-roleplay-accent-border); }
+.composer textarea:focus-visible { outline: none; }
+.composerField:focus-within { box-shadow: inset 2px 0 var(--dsw-roleplay-accent-border); }
+.actorFacingBeat { border-top: 1px solid var(--dsw-roleplay-hairline); padding: 8px 10px 10px; }
+.surface .actorFacingBeatToggle { min-height: 44px; padding: 6px 0; border: 0; background: transparent;
+  color: var(--dsw-roleplay-accent-ink); font: 500 13px/1.5 var(--dsw-font-family); text-align: left; }
+.surface .actorFacingBeat .composerField { min-height: 80px; padding: 6px 0; }
+.surface .actorFacingBeat .composerField > span { color: var(--dsw-alias-label-primary); }
+.surface .actorFacingBeat textarea { min-height: 56px; resize: vertical; }
+.actorFacingBeat .modeDescription { margin: 0; }
+.performanceFields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px; padding: 0 10px 12px; }
+.performanceFields > p { grid-column: 1 / -1; margin: 0; }
+.performanceField { min-width: 0; border: 1px solid var(--dsw-alias-border-l2); border-radius: 10px; padding: 4px 8px 10px; }
+.surface .performanceField .composerField { padding: 8px 2px; }
+.performanceField .composerField > span { font-size: 15px; font-weight: 600; color: var(--dsw-alias-label-primary); }
+.surface .performanceField textarea { min-height: 76px; height: auto; resize: vertical; }
+.performanceOptions { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.performanceOptions label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; }
+.performanceOptions select { max-width: 100%; min-height: 36px; }
+.composerFooter { display: flex; flex-shrink: 0; gap: 10px; align-items: center; padding: 10px 0 0; border-top: 1px solid var(--dsw-roleplay-hairline); }
+.surface .composerFooter > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.surface .composerFooter > button:not(.send), .surface .layoutToggle { min-height: 34px; padding: 6px 8px; border-color: transparent;
+  background: transparent; font-size: 12px; color: var(--dsw-alias-label-secondary); white-space: nowrap; }
+.surface .layoutToggle[aria-expanded='true'] { color: var(--dsw-roleplay-accent-ink); background: var(--dsw-roleplay-accent-soft); }
+.composerModel { min-width: 0; max-width: min(290px, 45%); }
+.composerModel > div { min-width: 0; max-width: 100%; }
+.composerModel button[aria-haspopup='menu'] { max-width: 100%; }
+.surface .composer .send { min-height: 38px; min-width: 100px; padding: 8px 14px; border: 1px solid transparent; border-radius: 9px;
+  background: var(--dsw-roleplay-submit); color: var(--dsw-roleplay-submit-ink); font-size: 13px; font-weight: 600; }
+.surface .composer .send:hover:not(:disabled) { background: color-mix(in srgb, var(--dsw-roleplay-submit) 85%, var(--dsw-roleplay-card)); }
+.composerSpacer { flex: 1; }
+.composer .toolbar { margin: 8px 0; gap: 8px; }
+.composer .toolbar > button { display: inline-flex; align-items: center; gap: 6px; }
+.surface .layoutPanel { display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; align-items: end; padding: 12px 10px;
+  position: absolute; bottom: calc(100% + 10px); left: 0; right: 0; margin: 0;
+  border: 1px solid var(--dsw-roleplay-hairline); border-radius: 12px; background: var(--dsw-roleplay-composer);
+  box-shadow: 0 8px 32px var(--dsw-roleplay-shadow); }
+.surface .layoutPanel label { min-width: 0; margin: 0; gap: 8px; font-size: 12px; }
+.layoutPanel label > span { display: flex; align-items: center; gap: 10px; }
+.surface .layoutPanel input { width: 100%; min-width: 40px; padding: 0; accent-color: var(--dsw-roleplay-accent); cursor: pointer; }
+.layoutPanel output { color: var(--dsw-alias-label-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 11px; }
+.surface .layoutPanel button { font-size: 12px; padding: 6px 8px; min-height: 32px; background: transparent; }
+.reading { position: relative; }
+.widthRail { position: absolute; top: 0; bottom: 0; width: 24px; pointer-events: none; }
+.widthRail[data-side='left'] { left: -28px; }
+.widthRail[data-side='right'] { right: -28px; }
+.widthGrip { position: sticky; top: 42vh; display: grid; place-items: center; width: 24px; height: 80px; pointer-events: auto;
+  cursor: ew-resize; touch-action: none; user-select: none; border-radius: 8px; }
+.widthGrip > span { width: 2px; height: 38px; border-radius: 2px; background: var(--dsw-roleplay-hairline); }
+.heightGrip { position: absolute; top: -10px; left: calc(50% - 40px); display: grid; place-items: center; width: 80px; height: 22px;
+  cursor: ns-resize; touch-action: none; user-select: none; border-radius: 8px; }
+.heightGrip > span { width: 36px; height: 3px; border-radius: 4px; background: var(--dsw-alias-label-tertiary); }
+:is(.widthGrip, .heightGrip):is(:hover, :focus-visible, [data-dragging='true']) > span { background: var(--dsw-roleplay-accent); }
+:is(.widthGrip, .heightGrip):focus-visible { outline: 2px solid var(--dsw-roleplay-accent); outline-offset: 2px; }
+.pagination, .discussionDock, .advancedPanel { width: min(100% - 48px, 900px); margin: 12px auto; }
+.advancedPanel { box-sizing: border-box; }
+.surface .latest { position: sticky; bottom: calc(var(--narrative-composer-height, 256px) + 32px); align-self: flex-end; margin-right: 24px; z-index: 3;
+  width: 40px; height: 40px; padding: 0; border-radius: 50%; box-shadow: 0 4px 16px rgb(0 0 0 / 15%); }
+.turn { --dsw-transcript-accent: var(--dsw-roleplay-accent); --turn-ink: var(--dsw-transcript-accent); margin: 0 0 34px; }
+.turn[data-tone='0'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-0); }
+.turn[data-tone='1'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-1); }
+.turn[data-tone='2'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-2); }
+.turn[data-tone='3'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-3); }
+.turn[data-tone='4'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-4); }
+.turn[data-tone='5'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-5); }
+.turn[data-tone='6'] { --dsw-transcript-accent: var(--dsw-roleplay-actor-6); }
+.turn[data-tone='7'], .turn[data-narrator='true'] { --dsw-transcript-accent: var(--dsw-roleplay-accent); }
+.turnBody { flex: 1; min-width: 0; padding: 0; }
+.turnHeader { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 4px 0 14px;
+  font: 600 17px/1.5 var(--dsw-roleplay-font-story); }
+.turnActions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: var(--dsw-alias-label-secondary); font-size: 13px; margin-top: 12px; }
+.surface .turnActions button { display: inline-flex; align-items: center; gap: 6px; padding: 8px 10px; min-height: 40px; border: 1px solid transparent; background: transparent; color: inherit; }
+.surface .turnActions button:hover:not(:disabled) { color: var(--dsw-alias-label-primary); border-color: var(--dsw-alias-border-l2); background: var(--dsw-alias-interactive-bg-hover); }
+.speakerIdentity { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.speakerIdentity > span { color: var(--dsw-alias-label-secondary); font: 400 13px/1.6 var(--dsw-font-family); }
+/* Open dialogue columns keep narrative dominant; action retains its own quieter inset. */
+.turnRow { margin-top: 0; padding: 10px 0 10px 20px; border: 0; border-left: 1px solid color-mix(in srgb, var(--turn-ink) 45%, transparent);
+  border-radius: 0; background: transparent; }
+.turnRow > small { color: var(--dsw-alias-label-primary); font: 600 14px/1.7 var(--dsw-font-family); margin-bottom: 5px; }
+.turnRow p { margin: 6px 0 0; }
+.turnRow[data-kind='speech'] + .turnRow[data-kind='speech'] > small:first-child { display: none; }
+.turnRow[data-kind='action'] { margin: 8px 0; padding: 10px 16px; border: 0; border-left: 1px dashed var(--dsw-roleplay-hairline);
+  border-radius: 0 6px 6px 0; background: color-mix(in srgb, var(--dsw-roleplay-card) 45%, transparent); }
+.turnRow[data-kind='action'] p { margin-top: 4px; color: var(--dsw-alias-label-secondary); font-size: .92em; }
+.turnRow[data-kind='narration'], .turnRow[data-kind='perception'] { border-left-color: var(--dsw-roleplay-hairline); background: transparent; }
+.storyMarkdown { min-width: 0; overflow-wrap: anywhere; }
+.turnRow .storyMarkdown p { margin: 0; white-space: pre-wrap; }
+.turnRow .storyMarkdown p + p { margin-top: .85em; }
+.storyMarkdown :is(h1, h2, h3, h4, h5, h6) { line-height: 1.45; }
+.storyMarkdown :is(ul, ol) { padding-inline-start: 1.6em; }
+.storyMarkdown li + li { margin-top: .3em; }
+.storyMarkdown blockquote { margin-inline: 0; }
+.storyMarkdown > div > :first-child { margin-top: 0; }
+.storyMarkdown > div > :last-child { margin-bottom: 0; }
+.requestDialog { width: min(1180px, calc(100vw - 32px)); max-width: none; height: min(860px, calc(100dvh - 48px)); background: var(--dsw-roleplay-canvas); }
+.requestDialogContent { height: auto; flex-shrink: 0; overflow: visible; padding: 20px; }
+.requestLayout { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 20px; }
+.requestSteps { display: flex; flex-direction: column; gap: 8px; align-self: start; position: sticky; top: 0; max-height: 65vh; overflow: auto; }
+.requestSteps button { text-align: left; }
+.requestSteps small { display: block; color: var(--dsw-alias-label-secondary); margin-top: 4px; }
+.requestSteps [aria-current='step'], .requestTabs [aria-selected='true'] { background: var(--dsw-roleplay-accent-soft); color: var(--dsw-roleplay-accent-ink); }
+.requestReading { min-width: 0; }
+.requestTabs { display: flex; flex-wrap: wrap; gap: 6px; position: sticky; top: 0; background: var(--dsw-roleplay-canvas); padding-bottom: 12px; z-index: 1; }
+.requestMessages { list-style: none; padding: 0; }
+.requestMessages li { border: 1px solid var(--dsw-alias-border-l2); border-radius: 12px; padding: 20px; margin: 16px 0;
+  background: color-mix(in srgb, var(--dsw-roleplay-card) 45%, var(--dsw-roleplay-canvas)); }
+.requestMessages header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.surface .messageText { white-space: pre-wrap; overflow-wrap: anywhere; font: var(--dsh-content-font-size, 16px)/1.85 var(--dsw-font-family); max-height: none; overflow: visible; padding: 0; margin: 0; background: transparent; }
+.reasoningText { font: var(--dsh-content-font-size, 16px)/1.9 var(--dsw-font-family); overflow-wrap: anywhere; }
+.recipeRepair { padding: 12px; background: var(--dsw-roleplay-accent-soft); border-radius: 8px; margin: 12px 0; }
+.surface .dangerButton { margin-left: auto; background: transparent; }
+@media (max-width: 700px) {
+  .turnRow { padding: 14px 16px; }
+  .turnRow[data-kind='action'] { padding: 12px 14px; }
+  .requestLayout { grid-template-columns: minmax(0, 1fr); }
+  .requestSteps { flex-direction: row; position: static; overflow: auto; max-height: none; }
+  .requestSteps button { flex: none; }
+  .requestDialogContent { padding: 12px; }
+}
+.personEntry { display: grid; gap: 8px; padding: 16px 0; border-top: 1px solid var(--dsw-roleplay-accent-border); }
+.personEntry button { justify-self: start; font-size: 12px; }
+.playDialog { width: min(840px, calc(100vw - 32px)); max-height: calc(100dvh - 64px); box-sizing: border-box;
+  padding: 0 24px 24px; color: var(--dsw-alias-label-primary); background: var(--dsw-roleplay-canvas);
+  border: 1px solid var(--dsw-roleplay-accent-border); border-radius: 20px; overflow: auto;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 30%); }
+.playDialog::backdrop { background: rgb(0 0 0 / 45%); backdrop-filter: blur(3px); }
+.dialogHeader { display: flex; align-items: center; justify-content: space-between; padding: 16px 0;
+  position: sticky; top: 0; background: var(--dsw-roleplay-canvas); z-index: 1; border-bottom: 1px solid var(--dsw-roleplay-accent-border); }
+.nativeDialog { width: min(840px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); box-sizing: border-box; }
+.dialogScroll { min-height: 0; }
+.dialogScroll > :first-child { flex-shrink: 0; }
+.dialogScroll > [data-modal-body] { min-height: 0; overflow: auto; overscroll-behavior: contain;
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2); --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2); }
+.dialogContent { height: auto; overflow: visible; background: transparent; padding: 0; }
+.submission { border-bottom: 1px solid var(--dsw-alias-border-l2); padding: 2px 4px 10px; margin-bottom: 10px; }
+.playerDirection { margin: 8px 0 32px auto; width: fit-content; max-width: 85%; padding: 12px 18px;
+  border-radius: 18px 18px 5px; background: var(--dsw-specific-input-major); }
+.playerDirection p { margin: 4px 0 0; white-space: pre-wrap; }
+.playerDirection small { font-size: 11px; }
+.stateSummary { display: contents; }
+.submission > div { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; }
+.submission span { color: var(--dsw-alias-label-secondary); }
+.submission p { margin: 4px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 90px; overflow: auto; }
+.inputError { border-left: 3px solid var(--dsw-roleplay-accent); padding: 8px 12px; margin: 8px 0; font-size: 12px; }
+.inputError p { overflow-wrap: anywhere; max-height: 120px; overflow: auto; }
+.keyboardHint { flex-shrink: 0; text-align: right; margin: 6px 0 0; font-size: 10px; opacity: .75; }
+.startChoices { display: grid; gap: 12px; margin: 24px 0; }
+.workspaceHeader { padding-bottom: 16px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.workspaceHeader h2 { margin: 0; font-size: 20px; }
+.workspaceHeader p { color: var(--dsw-alias-label-secondary); font-size: 13px; margin-bottom: 0; }
+.workspaceLayout { display: grid; grid-template-columns: 152px minmax(0, 1fr); gap: 28px; margin-top: 20px; }
+.workspaceNav { display: flex; flex-direction: column; gap: 6px; align-self: start; position: sticky; top: 94px; }
+.workspaceNav button { text-align: left; background: transparent; border-color: transparent; }
+.workspaceNav button[aria-pressed='true'] { outline: none; background: var(--dsw-roleplay-accent-soft); color: var(--dsw-roleplay-accent-ink); }
+.workspaceContent { min-width: 0; }
+.workspaceContent > .toolbar:first-child { margin-top: 0; }
+.workspaceContent > .toolbar:first-child > input { flex: 1; min-width: 100px; }
+@media (max-width: 760px) {
+  .workspaceLayout { display: block; margin-top: 12px; }
+  .workspaceNav { position: static; flex-direction: row; overflow-x: auto; margin-bottom: 16px; }
+  .workspaceNav button { flex: none; }
+  .navigation { padding: 12px; gap: 10px; flex-wrap: wrap; }
+  .headerActions { width: 100%; overflow-x: auto; justify-content: flex-start; }
+  .headerActions button { padding: 6px 10px; font-size: 12px; flex: none; white-space: nowrap; }
+  .reading { width: calc(100% - 24px); display: block; }
+  .composer { width: calc(100% - 16px); padding: 10px 12px; }
+  .modeBar { display: none; }
+  .modeSelect { display: block; width: 100%; }
+  .composerFooter { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+  .composerModel { width: 100%; max-width: 100%; grid-column: 1; grid-row: 1; }
+  .composerFooter > .send { grid-column: 2; grid-row: 1; }
+  .composerFooter > button:not(.send) { justify-self: start; grid-row: 2; }
+  .composerFooter .composerSpacer { display: none; }
+  .surface .composerFooter > button:not(.send) { padding: 6px; }
+  .modeBar button { padding: 6px 8px; font-size: 12px; }
+  .turn { gap: 8px; }
+  .turnAvatar { width: 30px; height: 32px; font-size: 16px; border-radius: 10px; }
+  .card { padding: 16px; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+.creatorWorkspace { display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--dsw-roleplay-canvas); }
+.creatorWorkspace > :last-child { flex: 1; min-height: 0; }
+
+.creatorSettings { max-height: 50vh; overflow: auto; padding: 0.5rem 1rem; }
+
+.creatorWorkspace > .editor { overflow-y: auto; width: 100%; box-sizing: border-box; }
+
+.creatorControls { color: var(--dsw-alias-label-primary); font: 14px/1.6 var(--dsw-font-family); }
+.creatorControls fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.creatorControls h2 { margin-top: 0; }
+.creatorControls > .card { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.creatorControls.editor { padding: 24px; box-sizing: border-box; }
+.creatorControls textarea { min-height: 160px; font: inherit; }
+.creatorControls label > input:not([type='checkbox']) { width: 100%; }
+.creatorControls select { width: 180px; }
+
+/* The book library, draft editor and run tools share one set of surface and control tokens. */
+.bookPage { max-width: 1160px; width: 100%; box-sizing: border-box; }
+.bookTile { display: grid; grid-template-columns: 176px minmax(0, 1fr); gap: 28px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 18px; padding: 24px; margin: 0; background: var(--dsw-roleplay-card); box-shadow: 0 4px 20px var(--dsw-roleplay-shadow); }
+.surface .bookTitle { font-family: var(--dsw-roleplay-font-story); font-size: 24px; font-weight: 600; background: transparent; border: 0; margin-right: auto; padding-left: 0; }
+.bookMenu { margin-left: auto; font-size: 13px; }
+.bookWorkspace { display: grid; grid-template-columns: 174px minmax(0, 1fr); gap: 30px; margin: 24px 0; }
+.bookNav { display: flex; flex-direction: column; gap: 6px; align-self: start; position: sticky; top: 138px; }
+.surface .bookNav button { text-align: left; background: transparent; border-color: transparent; }
+.surface .bookNav button[aria-pressed='true'], .surface .bookTabs button[aria-pressed='true'] { outline: none; color: var(--dsw-roleplay-accent-ink); background: var(--dsw-roleplay-accent-soft); }
+.bookContent { min-width: 0; }
+.bookContent h2 { font-size: 20px; margin: 0 0 20px; }
+.bookContent > label:first-of-type { margin-top: 0; }
+.bookGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.bookTabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0; padding-bottom: 12px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.surface .bookTabs button { background: transparent; border-color: transparent; }
+.bookSection { margin: 24px 0; border: 0; border-top: 1px solid var(--dsw-alias-border-l2); padding: 20px 0 0; min-width: 0; }
+.bookSection > summary { font-weight: 600; }
+.bookEntry { min-width: 0; border: 1px solid var(--dsw-alias-border-l2); border-radius: 10px; padding: 16px; margin: 16px 0; background: var(--dsw-roleplay-card); }
+.bookEntry legend { font-size: 13px; font-weight: 600; padding: 0 8px; color: var(--dsw-alias-label-secondary); }
+.bookEntry textarea { min-height: 72px; }
+.bookValue { min-width: 0; }
+.surface .bookSaveBar { position: sticky; top: 78px; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 12px 0; background: var(--dsw-roleplay-canvas); border-bottom: 1px solid var(--dsw-alias-border-l2); flex-wrap: wrap; }
+.bookSaveBar strong { flex: 1; min-width: 120px; }
+.bookSaveBar [role='status'] { color: var(--dsw-alias-label-secondary); font-size: 12px; }
+.surface .primaryButton { background: var(--dsw-roleplay-accent); color: var(--dsw-roleplay-on-accent); border-color: transparent; }
+.surface .promptEditor { min-height: 180px; }
+.recipeRow { border: 1px solid var(--dsw-alias-border-l2); border-radius: 10px; padding: 12px 16px; margin: 8px 0; background: var(--dsw-roleplay-card); }
+.recipeRow summary > span { margin-right: 12px; }
+.recipeRow summary > small { display: inline; }
+.recipeRow textarea { min-height: 160px; }
+.recipeSaveBar { position: sticky; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 16px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 10px; background: var(--dsw-roleplay-card); }
+.recipeSaveBar p { margin: 0; }
+.runTools { display: flex; gap: 4px; padding: 10px 24px; flex-wrap: wrap; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.surface .runTools button { font-size: 13px; background: transparent; border-color: transparent; padding: 6px 10px; }
+.surface input::file-selector-button, .creatorControls input::file-selector-button { border: 0; padding: 6px 10px; margin-right: 12px; border-radius: 5px; color: var(--dsw-alias-label-primary); background: var(--dsw-roleplay-accent-soft); cursor: pointer; font: inherit; }
+.surface .fileAction { font-size: 13px; margin: 0; }
+.surface input, .surface textarea, .surface select { font: inherit; }
+.creatorWorkspace svg ellipse { fill: var(--dsw-roleplay-accent); }
+@media (max-width: 760px) {
+  .bookWorkspace { display: block; }
+  .bookNav { position: static; flex-direction: row; flex-wrap: wrap; margin-bottom: 20px; }
+  .bookGrid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .surface .bookSaveBar { position: static; }
+  .bookTabs { gap: 2px; }
+  .runTools { padding: 8px 12px; }
+  .runTools button { flex: none; }
+}
+
+.surface .messageText[data-collapsed="true"] { max-height: 11.1em; overflow: hidden; }
+.requestBlock + .requestBlock { border-top: 1px solid var(--dsw-alias-border-l2); margin-top: 12px; padding-top: 12px; }
+.requestBlock > small { color: var(--dsw-alias-label-secondary); }
+
+@media (pointer: coarse) {
+  :is(.surface, .creatorControls) button:where(:not(.composerModel *)), :is(.surface, .creatorControls) select { min-height: 44px; }
+}
+
+.surface .playerDirection > .toolbar button { font-size: 12px; padding: 5px 8px; min-height: 30px; background: transparent; border-color: transparent; color: var(--dsw-alias-label-secondary); }
+.playerDirection > .toolbar { gap: 4px; margin-bottom: 0; }
+
+/* Storyweaver library: restrained book jackets and a spacious welcome above the working shelf. */
+.libraryHero { position: relative; text-align: center; padding: 32px 24px 30px; isolation: isolate; }
+.libraryHero::before { content: ''; position: absolute; z-index: -1; inset: -24px -16px 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 30%, color-mix(in srgb, var(--dsw-roleplay-accent-soft) 58%, transparent), transparent 66%); }
+.heroEmblem { display: grid; place-items: center; width: 76px; height: 76px; margin: 0 auto 20px;
+  color: var(--dsw-roleplay-accent); border: 1px solid var(--dsw-roleplay-accent-border); border-radius: 24px;
+  background: var(--dsw-roleplay-card); box-shadow: 0 8px 28px var(--dsw-roleplay-shadow); transform: rotate(-6deg); }
+.heroEmblem svg { transform: rotate(6deg); }
+.eyebrow { color: var(--dsw-roleplay-accent-ink); font: 500 12px/1.7 var(--dsw-font-family); letter-spacing: .18em; }
+.libraryHero h1, .creationHero h1 { margin: 12px 0 16px; font: 500 clamp(30px, 3.2vw, 44px)/1.4 var(--dsw-roleplay-font-story); letter-spacing: .03em; text-wrap: balance; }
+.libraryHero p { max-width: 490px; margin: 0 auto; color: var(--dsw-alias-label-secondary); line-height: 1.9; text-wrap: pretty; }
+.libraryActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 720px; margin: 0 auto; }
+.surface .createChoice { display: flex; align-items: center; gap: 16px; padding: 18px 20px; min-height: 84px; text-align: left;
+  background: var(--dsw-roleplay-card); border-radius: 14px; box-shadow: 0 3px 14px var(--dsw-roleplay-shadow); }
+.createChoice > svg { color: var(--dsw-roleplay-accent); flex-shrink: 0; }
+.createChoice > span:nth-child(2) { flex: 1; min-width: 0; }
+.createChoice strong { display: block; font-size: 14px; font-weight: 600; }
+.createChoice small { font-size: 12px; margin-top: 4px; }
+.createChoice > span:last-child { color: var(--dsw-alias-label-secondary); font-size: 18px; }
+.surface .createChoice:first-child { border-color: var(--dsw-roleplay-accent-border); }
+.surface .createChoice:hover:not(:disabled) { border-color: var(--dsw-roleplay-accent); box-shadow: 0 6px 24px var(--dsw-roleplay-shadow); }
+.libraryImport { max-width: 720px; margin: 16px auto 36px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.libraryImport > summary { width: fit-content; margin: auto; padding: 8px 12px; border-radius: 8px; }
+.libraryImport .toolbar { padding: 12px 20px; border: 1px solid var(--dsw-alias-border-l2); border-radius: 12px; }
+.libraryImport label { flex: 1; min-width: 0; }
+.libraryImport input { width: 100%; font-size: 12px; }
+.collectionHeader { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--dsw-alias-border-l2); padding: 0 0 16px; margin: 0 0 24px; }
+.collectionHeader h2 { margin: 0; font-size: 17px; font-weight: 600; }
+.collectionHeader > span { font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.bookShelf { display: grid; gap: 20px; padding-bottom: 32px; }
+.surface .bookCover { --cover-ink: var(--dsw-roleplay-accent-ink); display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; min-height: 236px; padding: 18px; overflow: hidden; position: relative; color: var(--cover-ink);
+  border: 1px solid color-mix(in srgb, var(--cover-ink) 22%, transparent); border-radius: 3px 10px 10px 3px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--cover-ink) 14%, transparent), transparent 8%, color-mix(in srgb, var(--cover-ink) 8%, transparent) 9%, transparent 12%),
+    color-mix(in srgb, var(--cover-ink) 9%, var(--dsw-roleplay-card)); box-shadow: 3px 5px 12px var(--dsw-roleplay-shadow); }
+.surface .bookCover[data-tone='1'] { --cover-ink: var(--dsw-roleplay-actor-1); }
+.surface .bookCover[data-tone='2'] { --cover-ink: var(--dsw-roleplay-actor-0); }
+.surface .bookCover:hover:not(:disabled) { background-color: var(--dsw-roleplay-accent-soft); }
+.coverEdition { align-self: stretch; display: flex; justify-content: space-between; gap: 6px; font: 500 9px/1.6 var(--dsw-font-family); letter-spacing: .1em; margin-bottom: auto; }
+.bookCover > strong { font: 500 24px/1.6 var(--dsw-roleplay-font-story); letter-spacing: .08em; overflow-wrap: anywhere; }
+.coverRule { display: block; width: 24px; height: 1px; background: currentColor; margin-top: auto; }
+.bookInfo { align-self: center; min-width: 0; }
+.bookStatus { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.bookStatus::before { content: ''; width: 5px; height: 5px; border: 1px solid currentColor; border-radius: 50%; }
+.bookStatus[data-published='true']::before { background: var(--dsw-roleplay-actor-1); border-color: var(--dsw-roleplay-actor-1); }
+.bookInfo > .toolbar { gap: 8px; margin: 8px 0; }
+.surface .bookInfo .bookTitle { flex-basis: 100%; text-align: left; white-space: normal; overflow-wrap: anywhere; }
+.surface .bookInfo .toolbar > button:not(.bookTitle) { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+.surface .bookInfo .dangerButton { order: 3; border-color: transparent; color: var(--dsw-alias-label-secondary); }
+.bookPremise { margin: 14px 0 18px; font-size: 13px; line-height: 1.9; color: var(--dsw-alias-label-secondary); display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+.bookRuns { display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--dsw-alias-border-l2); padding-top: 14px; }
+.bookRuns:empty { display: none; }
+.surface .bookRuns button { font-size: 12px; background: transparent; }
+.libraryEmpty { text-align: center; border: 1px dashed var(--dsw-roleplay-accent-border); border-radius: 16px; padding: 36px 24px; color: var(--dsw-alias-label-secondary); }
+.libraryEmpty svg { color: var(--dsw-roleplay-accent); margin-bottom: 12px; }
+.libraryEmpty h3 { color: var(--dsw-alias-label-primary); font-family: var(--dsw-roleplay-font-story); }
+.libraryEmpty p { margin-bottom: 0; font-size: 13px; }
+.creationHero { text-align: center; padding: 24px 16px 30px; }
+.creationHero .heroEmblem { width: 60px; height: 60px; border-radius: 18px; }
+.creationHero p { max-width: 560px; margin: 0 auto; color: var(--dsw-alias-label-secondary); line-height: 1.9; }
+.creatorControls.editor > form { background: var(--dsw-roleplay-card); border: 1px solid var(--dsw-alias-border-l2); border-radius: 18px; padding: 24px; margin-bottom: 32px; }
+.creatorControls.editor > form p { color: var(--dsw-alias-label-secondary); font-size: 13px; }
+.creatorControls .primaryButton { background: var(--dsw-roleplay-accent); color: var(--dsw-roleplay-on-accent); border-color: transparent; }
+.creatorControls .primaryButton:hover:not(:disabled) { background: var(--dsw-roleplay-accent-ink); }
+.surface .runTools { gap: 8px; padding: 10px 24px; }
+.surface .runTools button { min-height: 32px; font-size: 12px; border-color: transparent; background: transparent; color: var(--dsw-alias-label-secondary); }
+
+.openingMark { display: flex; justify-content: center; }
+:is(.surface, .creatorControls) button, .libraryImport summary { transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+@media (max-width: 760px) {
+  .libraryHero { padding: 24px 4px; }
+  .libraryHero h1, .creationHero h1 { font-size: 30px; }
+  .libraryHero p { font-size: 13px; }
+  .libraryActions { gap: 10px; }
+  .surface .createChoice { padding: 14px; gap: 10px; }
+  .createChoice > span:last-child { display: none; }
+  .bookTile { grid-template-columns: 126px minmax(0, 1fr); gap: 20px; padding: 18px; }
+  .surface .bookCover { min-height: 210px; padding: 14px; }
+  .coverEdition { font-size: 8px; letter-spacing: 0; }
+  .bookCover > strong { font-size: 21px; }
+  .surface .runTools { padding: 8px 12px; }
+}
+@media (max-width: 520px) {
+  .libraryActions { grid-template-columns: minmax(0, 1fr); }
+  .surface .createChoice { min-height: 76px; }
+  .surface > .bookPage { padding: 16px; }
+  .heroEmblem { width: 64px; height: 64px; margin-bottom: 16px; border-radius: 20px; }
+  .bookTile { grid-template-columns: minmax(0, 1fr); padding: 16px; gap: 18px; }
+  .surface .bookCover { min-height: 190px; padding: 18px 24px; gap: 12px; }
+  .bookCover > strong { font-size: 26px; }
+  .bookCover > svg { width: 40px; height: 40px; }
+  .bookInfo > .toolbar { flex-wrap: wrap; }
+  .collectionHeader > span { white-space: nowrap; }
+  .creatorControls.editor { padding: 16px; }
+  .creatorControls.editor > form { padding: 16px; }
+  .creationHero { padding: 20px 0; }
+}
+@media (pointer: coarse) {
+  .surface .runTools button, .surface .bookInfo button, .surface .bookRuns button { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.surface, .creatorControls) button, .libraryImport summary { transition: none; }
+}
+
+.creationHero > .primaryButton { margin-top: 24px; min-height: 44px; padding: 10px 24px; }
+
+@media (max-width: 760px) {
+  .widthRail { display: none; }
+  .composer { padding: 14px 12px 8px; bottom: 8px; }
+  .composerModes { gap: 8px; }
+  .surface .modeSelect { width: auto; flex: 1; min-width: 0; padding: 5px 10px; border-color: var(--dsw-roleplay-hairline); background: transparent; font-size: 13px; }
+  .surface .layoutPanel { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .layoutPanel > label:first-child { display: none; }
+  .layoutPanel > button { justify-self: end; }
+  .surface .composerField { padding: 8px 6px; }
+  .modeDescription { margin: 6px 6px 0; font-size: 11px; }
+  .composerFooter { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 6px; padding-top: 6px; }
+  .composerModel { grid-column: 2; grid-row: 1; width: 100%; max-width: 100%; }
+  .composerModel button[aria-haspopup='menu'] { width: 100%; }
+  .surface .composerFooter > button:first-child { grid-column: 1; grid-row: 1; font-size: 0; width: 32px; min-width: 32px; padding: 6px; }
+  .composerFooter .composerSpacer { display: none; }
+  .surface .composer .send { grid-column: 3; grid-row: 1; min-width: 96px; }
+  .surface .keyboardHint { display: none; }
+  .heightGrip { top: -16px; height: 32px; }
+  .turnRow { padding: 8px 0 8px 14px; }
+}
+
+/* Recorded thinking belongs directly beneath the speaker, ahead of their accepted prose. */
+.turnReasoning { margin: -6px 0 16px; font: 13px/1.7 var(--dsw-font-family); color: var(--dsw-alias-label-secondary); }
+.directorRecord { clear: both; margin: 20px 0 30px; padding: 10px 14px; border: 1px solid var(--dsw-roleplay-hairline);
+  border-radius: 10px; background: color-mix(in srgb, var(--dsw-roleplay-composer) 55%, transparent);
+  font: 13px/1.7 var(--dsw-font-family); color: var(--dsw-alias-label-secondary); }
+.recordToggle { min-height: 32px; gap: 8px; cursor: pointer; border-radius: 6px; }
+.recordToggle:focus-visible { outline: 2px solid var(--dsw-roleplay-accent); outline-offset: 3px; }
+.recordToggle:hover { color: var(--dsw-roleplay-accent-ink); }
+.recordHint { margin-left: auto; font-size: 12px; color: var(--dsw-alias-label-tertiary); }
+.recordBody { margin: 10px 0 2px 20px; padding: 2px 0 2px 16px; border-left: 1px solid var(--dsw-roleplay-accent-border);
+  font: 14px/1.85 var(--dsw-font-family); overflow-wrap: anywhere; }
+.prose .recordStep { margin: 0 0 16px; }
+.recordStep:last-child { margin-bottom: 0; }
+.recordBody p { margin: 6px 0; }
+.recordStep > small { margin: 4px 0 10px; font-size: 11px; }
+.recordTool { padding: 8px 10px; margin: 8px 0; background: var(--dsw-roleplay-canvas); border-radius: 6px; }
+.recordTool summary { font: 12px/1.7 var(--dsw-font-family); }
+.recordTool pre { font: 12px/1.7 monospace; }
+@media (max-width: 760px) {
+  .recordToggle { min-height: 44px; }
+  .recordHint { display: none; }
+  .recordBody { margin-left: 6px; padding-left: 10px; }
+}
+
+/* Reading stays central; discussion evidence follows chronology and controls stay by the composer. */
+.prose .preparation { margin: 18px 0 30px; padding: 16px 0; border: 0; border-block: 1px solid var(--dsw-roleplay-hairline); border-radius: 0; }
+.preparationHeading { display: flex; align-items: center; gap: 14px; }
+.preparationHeading > div { flex: 1; min-width: 0; }
+.preparationHeading strong { font: 600 12px/1.6 var(--dsw-font-family); color: var(--dsw-roleplay-accent-ink); }
+.preparationHeading p { margin: 4px 0 0; font: 500 15px/1.7 var(--dsw-font-family); color: var(--dsw-alias-label-primary); }
+.preparationHeading > span { font: 400 12px/1.6 var(--dsw-font-family); color: var(--dsw-alias-label-secondary); white-space: nowrap; }
+.preparationActors { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+.surface .preparationActors button { display: inline-flex; align-items: center; gap: 8px; border-radius: 8px; min-height: 38px; padding: 6px 12px;
+  background: transparent; font: 500 13px/1.6 var(--dsw-font-family); }
+.surface .preparationActors button[aria-expanded='true'] { background: var(--dsw-roleplay-accent-soft); border-color: var(--dsw-roleplay-accent-border); }
+.preparationActors small { font-size: 11px; }
+.readyDot { display: inline-block; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--dsw-alias-label-tertiary); }
+.readyDot[data-ready='true'] { background: var(--dsw-roleplay-accent); }
+.preparation .recordBody { max-height: 52vh; overflow: auto; padding: 16px; margin: 12px 0 0; border: 0; border-radius: 8px;
+  background: var(--dsw-roleplay-card); font-size: 14px; }
+.preparation .recordStep { margin: 0; }
+.discussionStatus { display: flex; gap: 8px; align-items: center; flex-shrink: 0; padding: 0 0 10px; margin-bottom: 10px;
+  border-bottom: 1px solid var(--dsw-roleplay-hairline); }
+.surface .discussionStatus button { display: flex; align-items: center; gap: 8px; min-height: 32px; border: 0; padding: 4px 6px; background: transparent; font-size: 12px; }
+.discussionStatus button:first-child { flex: 1; min-width: 0; text-align: left; }
+.discussionStatus button > span:not(.readyDot) { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--dsw-alias-label-secondary); }
+.discussionStatus strong, .discussionStatus small { white-space: nowrap; }
+.inspector { position: fixed; top: 12px; right: 12px; bottom: 12px; height: auto; max-height: none;
+  width: min(760px, calc(100vw - 24px)); max-width: none; border-radius: 14px; background: var(--dsw-roleplay-canvas); }
+.inspector .requestLayout { display: block; }
+.inspector .requestSteps { display: flex; flex-direction: row; position: static; max-height: none; min-width: 0; max-width: 100%;
+  overflow-x: auto; gap: 8px; margin-bottom: 18px; padding-bottom: 8px; }
+.inspector .requestSteps button { flex: 0 0 auto; max-width: 180px; }
+.inspector .card { border: 0; background: transparent; padding: 0; }
+.inspector .card > summary { display: none; }
+.inspector .dialogContent { padding-top: 4px; }
+.toolMenu { display: flex; flex-direction: column; gap: 12px; }
+.surface[data-panel='play'] .runTools { padding-block: 6px; gap: 2px; }
+.surface[data-panel='play'] .runTools button { color: var(--dsw-alias-label-secondary); }
+@media (max-width: 760px) {
+  .preparationHeading { flex-wrap: wrap; gap: 8px; }
+  .preparationHeading > span { margin-left: 20px; }
+  .preparationActors small { display: none; }
+  .discussionStatus button:first-child > small { display: none; }
+  .inspector { inset: 8px; width: calc(100vw - 16px); }
+}
+
+.importPanel { display: grid; gap: 18px; padding: 4px; }
+.importPanel p { margin: 0; line-height: 1.7; }
+.importPanel pre { max-height: 36vh; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+.importPanel textarea { width: 100%; box-sizing: border-box; }
+.importFile { display: grid; gap: 12px; padding: 20px; border: 1px dashed var(--dsw-alias-border-l2); border-radius: 12px; }
+.importFile input { width: 100%; min-width: 0; }
+.importPanel [role="alert"] { overflow-wrap: anywhere; }
+
+.creativePage { overflow-y: auto; padding: 24px max(20px, calc((100% - 1100px) / 2)); min-height: 0; height: 100%; box-sizing: border-box; }
+.creativeHeading { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; position: sticky; top: -24px; padding: 16px 0; background: var(--dsw-alias-bg-base, #18191b); z-index: 2; }
+.creativeSource { padding: 16px 0; border-bottom: 1px solid var(--dsw-alias-border-l2); margin-bottom: 16px; }
+.creativeSource label, .creativeFields label { display: grid; gap: 8px; }
+.creativeSource button, .creativeSource select { min-height: 44px; }
+.creativeComparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.creativeSource pre, .creativePage pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 320px; overflow-y: auto; }
+.creativeFieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.creativeFieldset:disabled { opacity: .7; }
+.creativeFields { display: grid; gap: 14px; }
+.creativeFields textarea { width: 100%; box-sizing: border-box; }
+@media (max-width: 640px) { .creativeComparison { grid-template-columns: minmax(0, 1fr); } }

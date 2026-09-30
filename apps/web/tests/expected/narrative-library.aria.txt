@@ -1,0 +1,29 @@
+- region "Storybooks":
+  - text: EVERY BOOK, A WORLD OF ITS OWN
+  - heading "A story is waiting to unfold." [level=1]
+  - paragraph: Begin with a spark. Give your characters a story of their own. Listen from the sidelines, or step into their world.
+  - button "AI creation mode Imagine worlds and characters with AI":
+    - img
+    - strong: AI creation mode
+    - text: Imagine worlds and characters with AI
+  - button "New book draft Write the first lines yourself":
+    - img
+    - strong: New book draft
+    - text: Write the first lines yourself
+  - button "Import your work"
+  - paragraph: Choose a storybook JSON file or paste its contents. Supports book documents and exported storybook packages. Import creates a new draft for review and publication without overwriting existing books.
+  - heading "Your storybooks" [level=2]
+  - text: Storybooks · 1
+  - article:
+    - button "Open Independent Ledger":
+      - text: STORYWEAVER 01
+      - strong: Independent Ledger
+    - text: Published · Ready to play
+    - button "Independent Ledger"
+    - button "Continue creation"
+    - button "Remove storybook"
+    - button "New story instance":
+      - img
+      - text: New story instance
+    - paragraph: The world is ready. Where the story goes is yours to discover.
+    - button "Story run 1 · Pinned version 1 · <instance>"

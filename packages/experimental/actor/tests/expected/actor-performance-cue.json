@@ -1,0 +1,8 @@
+{
+  "id": "scene-style",
+  "role": "system",
+  "content": "[CURRENT SCENE GUIDANCE — author-side performance direction, not perceived facts or evidence]\nExplain a practical route and take the initiative. Use developed paragraphs, in your own voice.",
+  "sources": [
+    "style:scene"
+  ]
+}

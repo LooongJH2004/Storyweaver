@@ -1,0 +1,10 @@
+{"id":"speech-1","sourceRef":"$source:1","kind":"claim","revision":3,"order":0}
+```
+{"speaker":{"ref":"person-1","label":"店主"},"content":"告示说“碰水就化”，我没试过。"}
+```
+
+{"id":"observation-2","sourceRef":"$source:2","kind":"observation","revision":4,"order":0}
+```
+你看见材料滑入水中。
+半个时辰后，它仍完整。
+```

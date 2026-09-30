@@ -1,0 +1,37 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types",
+    "tsBuildInfoFile": "lib/tsconfig.host.tsbuildinfo"
+  },
+  "files": [
+    "src/index.ts",
+    "src/types.ts",
+    "src/invariant.ts",
+    "src/play-feed.ts"
+  ],
+  "references": [
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../../story/roleplay-core"
+    },
+    {
+      "path": "../../typert/protocol"
+    },
+    {
+      "path": "../gateway/tsconfig.host.json"
+    },
+    {
+      "path": "../../story/roleplay-services"
+    },
+    {
+      "path": "../../runtime-diagnostics/invariants"
+    },
+    {
+      "path": "../../host/directory-picker"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "note:opaque-16:0:0",
+  "revision": 1,
+  "kind": "promise",
+  "status": "active",
+  "text": "I owe them a return visit.",
+  "sourceRevisionRange": {
+    "from": 3,
+    "to": 3
+  },
+  "topic": "Return visit",
+  "unresolvedCount": 1,
+  "detailReference": "retention:note:opaque-16:0:0:r1"
+}

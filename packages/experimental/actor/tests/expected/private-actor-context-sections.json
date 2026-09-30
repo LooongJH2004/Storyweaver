@@ -1,0 +1,42 @@
+[
+  {
+    "id": "policy",
+    "role": "system"
+  },
+  {
+    "id": "tools",
+    "role": "system"
+  },
+  {
+    "id": "reasoning-language",
+    "role": "system"
+  },
+  {
+    "id": "identity",
+    "role": "system"
+  },
+  {
+    "id": "people",
+    "role": "system"
+  },
+  {
+    "id": "subjective-state",
+    "role": "system"
+  },
+  {
+    "id": "objective-state",
+    "role": "system"
+  },
+  {
+    "id": "discussion",
+    "role": "system"
+  },
+  {
+    "id": "reasoning-mode",
+    "role": "user"
+  },
+  {
+    "id": "consolidation",
+    "role": "user"
+  }
+]

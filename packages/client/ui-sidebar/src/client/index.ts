@@ -1,0 +1,101 @@
+/** Registers the sidebar shell into the layout-owned slot. */
+import type { Context as ClientContext } from '@deepseek-ai/cordis'
+// Type-only: pulls the locale plugin's Context merge (ctx.locale).
+import type {} from '@deepseek-ai/dsh-client-locale/client'
+// Type-only: pulls the SlotRegistry service merge (ctx.slots).
+import type {} from '@deepseek-ai/dsh-client-ui-renderer/client'
+// Type-only: pulls the Session root standard-props merge.
+import type {} from '@deepseek-ai/dsh-client-ui-session/client'
+import type { SidebarRootInjected } from './contract/slots.ts'
+import { SidebarRoot } from './SidebarRoot.tsx'
+import { en, zh, type SidebarKey } from './locales.ts'
+
+export type {
+  SidebarBrandMarkOwnerProps, SidebarBrandNameOwnerProps, SidebarFooterActionOwnerProps,
+  SidebarRootComponentProps, SidebarRootInjected, SidebarSectionOwnerProps, SidebarSettingsOwnerProps,
+} from './contract/slots.ts'
+export type { SidebarKey } from './locales.ts'
+
+declare module '@deepseek-ai/dsh-client-ui-slots' {
+  interface LocaleNamespaceMap {
+    /** Sidebar shell controls copy. */
+    sidebar: SidebarKey
+  }
+}
+
+/** Dictionary namespace owned by this plugin (shell controls copy). */
+const NS = 'sidebar'
+
+interface StoryNavigation {
+  startStory(storyId?: Parameters<SidebarRootInjected['startStory']>[0]): void
+}
+
+interface WorkspaceNavigation {
+  startSession(): void
+}
+
+/** Product navigation keeps the standard sidebar shell independent of story storage. */
+export interface SidebarNavigation {
+  /** Select story labels and the story browsing slot. */
+  readonly storyMode: boolean
+  /** Open the product's create screen; does not create an execution Session. */
+  open(): void
+}
+
+declare module '@deepseek-ai/cordis' {
+  interface Context { sidebarNavigation: SidebarNavigation }
+}
+
+/** Services required by the sidebar plugin. */
+export const inject = ['slots', 'layout', 'locale']
+
+/** Registers the sidebar shell and its service callbacks.
+ * @param ctx - Client root context.
+ */
+export function apply(ctx: ClientContext): void {
+  ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'ui-sidebar: dictionaries')
+
+  const injectProps = (): SidebarRootInjected => {
+    const productNavigation = ctx.get('sidebarNavigation')
+    const storyNavigation = ctx.get('uiStory') as unknown as StoryNavigation | undefined
+    const workspaceNavigation = ctx.get('uiWorkspace') as unknown as WorkspaceNavigation | undefined
+    return {
+      storyMode: productNavigation?.storyMode ?? storyNavigation !== undefined,
+      startStory: (storyId) => {
+        if (productNavigation !== undefined) {
+          productNavigation.open()
+          return
+        }
+        if (storyNavigation !== undefined) {
+          storyNavigation.startStory(storyId)
+          return
+        }
+        if (workspaceNavigation !== undefined) {
+          workspaceNavigation.startSession()
+          return
+        }
+        throw new Error('ui-sidebar: neither Story nor Workspace navigation is available')
+      },
+      toggleSidebar: () => { ctx.layout.toggleSidebar() },
+    }
+  }
+  ctx.effect(
+    () => ctx.slots.register({
+      name: 'sidebar',
+      locale: NS,
+      // The shell owns geometry; ui-workspace registers the whole browsing
+      // region (header, search, session list, workspace dialogs), ui-settings
+      // registers the foot trigger + settings panel.
+      children: {
+        'sidebar.brand.mark': { kind: 'single', scope: 'root' },
+        'sidebar.brand.name': { kind: 'single', scope: 'root' },
+        'sidebar.stories': { kind: 'single', scope: 'root' },
+        'sidebar.workspaces': { kind: 'single', scope: 'root' },
+        'sidebar.settings': { kind: 'single', scope: 'root' },
+        'sidebar.footer.action': { kind: 'list', scope: 'root' },
+      },
+      inject: injectProps,
+    }, SidebarRoot),
+    'ui-sidebar: slot registration',
+  )
+}

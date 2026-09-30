@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/process/2026-09-29-repeatable-storyweaver-evolution.md
+2026-09-29-repeatable-storyweaver-evolution.md: 3a61ba717188983df6cccbc99ca8787772a5c433
+2026-09-29-repeatable-storyweaver-evolution.zh.md: a453f903a1af3e31033eb05af55fc98d79890eff

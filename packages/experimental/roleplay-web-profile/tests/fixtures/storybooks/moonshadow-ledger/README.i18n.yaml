@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/roleplay-web-profile/tests/fixtures/storybooks/moonshadow-ledger/README.md
+README.md: 55ad1f66506dc547656869b5eda38bd9bc24ef74
+README.zh.md: 953a91caf6592b5cb0e1500b50fd3b8112d33e05

@@ -1,0 +1,92 @@
+.errorRow,
+.quotaCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 11px 13px;
+  border: 1px solid var(--dsw-roleplay-card-border);
+  border-radius: 13px;
+  background: var(--dsw-roleplay-private-surface);
+  color: var(--dsw-alias-label-primary);
+}
+
+.errorRow > code,
+.quotaCard > code {
+  margin-left: auto;
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--dsw-alias-state-error);
+}
+
+.copy,
+.quotaBody {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+
+.copy span,
+.quotaBody p {
+  margin: 0;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.quotaCard {
+  border-color: var(--dsw-roleplay-accent-border);
+  background: linear-gradient(120deg, var(--dsw-roleplay-accent-soft), var(--dsw-roleplay-card));
+}
+
+.quotaIcon {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--dsw-roleplay-card);
+  color: var(--dsw-roleplay-accent);
+  font-size: 16px;
+}
+
+.quotaBody > strong {
+  color: var(--dsw-roleplay-accent-ink);
+  font-family: var(--dsw-roleplay-font-story);
+  font-size: 14px;
+}
+
+.checkpoint {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  margin-top: 3px;
+  color: var(--dsw-alias-label-tertiary);
+  font-size: 10px;
+}
+
+.quotaBody button {
+  justify-self: start;
+  margin-top: 5px;
+  padding: 5px 10px;
+  border: 1px solid var(--dsw-roleplay-accent-border);
+  border-radius: 8px;
+  background: var(--dsw-roleplay-button);
+  color: var(--dsw-roleplay-accent-ink);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quotaBody button:hover {
+  background: var(--dsw-roleplay-accent-soft);
+}

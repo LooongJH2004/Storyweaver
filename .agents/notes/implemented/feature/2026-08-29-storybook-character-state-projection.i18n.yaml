@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-08-29-storybook-character-state-projection.md
+2026-08-29-storybook-character-state-projection.md: 38f98d22eabacc7dded15d6377762477f25455e5
+2026-08-29-storybook-character-state-projection.zh.md: fbbc5e6f08f349e032af8af1665c8315f99d45b3

@@ -1,0 +1,3 @@
+name: 故事角色
+description: Storyweaver 内部使用的隔离 NPC Actor；只拥有角色工具与自己的私有上下文。
+order: 100

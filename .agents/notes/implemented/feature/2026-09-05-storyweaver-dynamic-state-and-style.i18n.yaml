@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-09-05-storyweaver-dynamic-state-and-style.md
+2026-09-05-storyweaver-dynamic-state-and-style.md: feef77509ce1702ff88051485b8ddfd5407a1816
+2026-09-05-storyweaver-dynamic-state-and-style.zh.md: 6cd5751c0465b5e4876e2618e8d2312d140e0c3e

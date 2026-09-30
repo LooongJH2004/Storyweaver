@@ -1,0 +1,17 @@
+# Keyless replay counterpart for the request-history projection snapshot.
+
+- id: llm-deepseek
+  name: '@deepseek-ai/dsh-llm-deepseek'
+  disabled: true
+
+- insert:
+    - id: llm-replay
+      name: '@deepseek-ai/dsh-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-flash
+    - id: request-history-projection-fixture
+      name: '../../../packages/test-support/session-snapshot/tests/fixtures/request-history-projection.ts'

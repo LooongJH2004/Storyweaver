@@ -1,0 +1,49 @@
+.browser { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; padding-right: 12px; font-size: 14px; }
+.browser button { border: 0; background: transparent; color: var(--dsw-alias-label-primary); cursor: pointer; font: inherit; }
+.browser button:hover:not(:disabled) { background: var(--dsw-alias-interactive-bg-hover); }
+.browser button:focus-visible, .search:focus-within { outline: 2px solid var(--dsw-roleplay-accent); outline-offset: -2px; }
+.shortcut { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; width: 100%; text-align: left; }
+.browser[data-wide='false'] { padding: 0; gap: 12px; }
+.browser[data-wide='false'] .shortcut { justify-content: center; width: 36px; height: 36px; padding: 0; }
+.search { display: flex; align-items: center; gap: 8px; margin: 14px 2px 4px; padding: 8px;
+  border: 1px solid var(--dsw-alias-border-l2); border-radius: 10px; background: var(--dsw-roleplay-canvas); color: var(--dsw-alias-label-secondary); }
+.search input { background: transparent; border: 0; outline: none; width: 100%; min-width: 0; font: inherit; color: var(--dsw-alias-label-primary); }
+.sectionTitle { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px 6px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.sectionTitle button { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 6px; }
+.instances { flex: 1; min-height: 0; overflow: auto; scrollbar-gutter: stable; }
+.instances button { display: block; width: 100%; padding: 10px 12px; border-radius: 10px; margin-bottom: 2px; text-align: left; }
+.instances button[aria-current='page'] { background: var(--dsw-roleplay-accent-soft); color: var(--dsw-roleplay-accent-ink);
+  box-shadow: inset 2px 0 var(--dsw-roleplay-accent); }
+.instances span { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height: 22px; }
+.instances small { display: inline; margin-right: 8px; font-size: 11px; color: var(--dsw-alias-label-secondary); }
+.book { padding: 6px 0 12px; border-bottom: 1px solid var(--dsw-alias-border-l2); }
+.book > button { padding-left: 22px; }
+.book > small { display: block; padding: 8px 12px; }
+.bookHeading { display: flex; align-items: center; }
+.bookHeading button:first-child { min-width: 0; flex: 1; font-weight: 600; }
+.bookHeading button:nth-child(2) { width: 36px; min-height: 44px; flex-shrink: 0; text-align: center; font-size: 22px; }
+.instanceRow { display: flex; align-items: center; padding-left: 10px; }
+.instanceRow > button:first-child { flex: 1; min-width: 0; }
+.instances .deleteButton { flex: none; width: auto; min-height: 44px; padding: 6px; font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.instances .deleteButton:hover { color: var(--dsw-alias-label-primary); }
+.confirmDelete { padding: 20px; line-height: 1.7; }
+.confirmDelete button { padding: 10px 16px; margin-right: 8px; border-radius: 8px; background: var(--dsw-alias-button-elevated-fill); }
+.browser button:disabled { opacity: .5; cursor: default; }
+
+@media (pointer: coarse) {
+  .browser button, .browser[data-wide='false'] .shortcut { min-height: 44px; }
+}
+
+.brand { display: inline-flex; align-items: baseline; gap: 9px; font-family: var(--dsw-roleplay-font-story); letter-spacing: .06em; }
+.brand small { color: var(--dsw-alias-label-secondary); font: 500 9px/1.5 var(--dsw-font-family); letter-spacing: .08em; }
+.plus { width: 16px; display: inline-grid; place-items: center; font-size: 22px; line-height: 16px; }
+.browser .shortcut { min-height: 44px; margin: 2px 0; gap: 12px; }
+.browser .shortcut > svg, .plus { color: var(--dsw-alias-label-secondary); }
+.search { margin-top: 22px; padding: 10px 12px; font-size: 13px; }
+.sectionTitle { padding-top: 18px; letter-spacing: .03em; }
+.bookHeading strong { font-family: var(--dsw-roleplay-font-story); font-size: 15px; overflow-wrap: anywhere; }
+.book > button:last-child { font-size: 12px; color: var(--dsw-alias-label-secondary); }
+.instanceRow { margin: 4px 0; }
+.instances button[aria-current='page'] { box-shadow: inset 3px 0 var(--dsw-roleplay-accent); }
+.browser button { transition: background-color 160ms ease, color 160ms ease; }
+@media (prefers-reduced-motion: reduce) { .browser button { transition: none; } }

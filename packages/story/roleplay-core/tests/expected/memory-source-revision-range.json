@@ -1,0 +1,26 @@
+[
+  "Your new valid context_update units take effect automatically. Existing pending proposals still await player review. Preserve subjective interpretation and source coverage; the player can inspect or disable effective notes.",
+  "These notes preserve earlier understanding at their recorded source revisions. Active means retained, not proof that every described condition or obligation still applies. Use later received evidence to distinguish current duties from completed promises and expired contingencies. Keep past terms as history; do not renew them merely by recalling them. An attempt alone does not establish completion, and a new agreement requires new evidence. Before revising or resolving a note with a detailReference, recall its details unless already present. Update the episode together with the brief when new evidence answers a stored question or changes an interpretation. A nonzero unresolvedCount means questions remain stored in those details; setting status=resolved does not remove them. Preserve the past experience, revise the current interpretation, and submit the complete episode with answered questions removed from unresolved.",
+  {
+    "id": "note:opaque-18:0:1",
+    "revision": 1,
+    "kind": "claim",
+    "status": "active",
+    "text": "UNRELATED: I prefer autumn walks.",
+    "sourceRevisionRange": {
+      "from": 4,
+      "to": 4
+    }
+  },
+  {
+    "id": "note:opaque-18:0:0",
+    "revision": 2,
+    "kind": "clue",
+    "status": "active",
+    "text": "I do not know who owns the silver key.",
+    "sourceRevisionRange": {
+      "from": 4,
+      "to": 4
+    }
+  }
+]

@@ -1,0 +1,43 @@
+/* Original RoleplayEventView geometry, with colors provided by the owning theme. */
+.row {
+  --event-ink: var(--dsw-transcript-accent, var(--dsw-alias-label-secondary));
+  --event-soft: color-mix(in srgb, var(--event-ink) 12%, var(--dsw-roleplay-card));
+  --event-line: color-mix(in srgb, var(--event-ink) 34%, var(--dsw-alias-border-l2));
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  margin-block: 12px;
+}
+.rail { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.marker {
+  position: relative; display: grid; place-items: center;
+  width: 42px; height: 42px; border: 1px solid var(--event-line); border-radius: 15px;
+  color: var(--event-ink); background: var(--event-soft);
+  font: 700 19px/1 var(--dsw-roleplay-font-story);
+}
+.marker i {
+  position: absolute; right: -5px; bottom: -5px; display: grid; place-items: center;
+  width: 19px; height: 19px; border: 2px solid var(--dsw-roleplay-canvas); border-radius: 50%;
+  background: var(--event-ink); color: var(--dsw-roleplay-canvas); font: 700 11px/1 var(--dsw-roleplay-font-story);
+}
+.card {
+  min-width: 0; padding: 13px 16px 14px; border: 1px solid var(--event-line);
+  border-left: 3px solid var(--event-ink); border-radius: 5px 18px 18px;
+  background: linear-gradient(115deg, var(--event-soft), transparent 46%), var(--dsw-roleplay-card);
+}
+.heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 7px; font: 700 17px/1.5 var(--dsw-roleplay-font-story); }
+.label { color: var(--event-ink); font: 600 11px/17px var(--dsw-font-family); }
+.content { margin-top: 7px; overflow-wrap: anywhere; font-size: calc(var(--dsh-content-font-size, 14px) + 2px); line-height: 1.75; }
+.content > div { font: inherit; }
+.content p { margin-block: 0 0.72em; }
+.content p:last-child { margin-bottom: 0; }
+.row[data-kind='speech'] .content, .row[data-kind='narration'] .content { font-family: var(--dsw-roleplay-font-story); }
+.row[data-kind='action'] .card { border-left-style: dashed; }
+.row[data-kind='action'] .content { font-style: italic; color: var(--dsw-alias-label-secondary); }
+@media (max-width: 600px) {
+  .row { grid-template-columns: 32px minmax(0, 1fr); gap: 9px; }
+  .marker { width: 30px; height: 32px; font-size: 16px; border-radius: 10px; }
+  .card { padding: 11px 12px; }
+  .heading { font-size: 15px; }
+}

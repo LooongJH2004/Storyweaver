@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/feature/2026-09-29-reactive-director-speaker-choice.md
+2026-09-29-reactive-director-speaker-choice.md: a0f5ed89a4b6c5df26984e0de50a7513c52514b3
+2026-09-29-reactive-director-speaker-choice.zh.md: efb720d79832d6ee4100cbb127bfdb20912ad952

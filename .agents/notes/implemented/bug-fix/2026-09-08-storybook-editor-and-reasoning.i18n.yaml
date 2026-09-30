@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/bug-fix/2026-09-08-storybook-editor-and-reasoning.md
+2026-09-08-storybook-editor-and-reasoning.md: 5ea2c69191e058301895f9ea37a26cc6c97a18ed
+2026-09-08-storybook-editor-and-reasoning.zh.md: 654860c3d0f01e0ec9ed9049cadddc6937a4c527

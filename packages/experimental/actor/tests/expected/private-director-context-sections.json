@@ -1,0 +1,46 @@
+[
+  {
+    "id": "policy",
+    "role": "system"
+  },
+  {
+    "id": "tools",
+    "role": "system"
+  },
+  {
+    "id": "reasoning-language",
+    "role": "system"
+  },
+  {
+    "id": "author-setting",
+    "role": "system"
+  },
+  {
+    "id": "planning",
+    "role": "system"
+  },
+  {
+    "id": "people",
+    "role": "system"
+  },
+  {
+    "id": "people",
+    "role": "system"
+  },
+  {
+    "id": "guidance",
+    "role": "system"
+  },
+  {
+    "id": "player-guidance",
+    "role": "user"
+  },
+  {
+    "id": "reasoning-mode",
+    "role": "user"
+  },
+  {
+    "id": "consolidation",
+    "role": "user"
+  }
+]

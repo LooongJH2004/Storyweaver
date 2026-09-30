@@ -1,0 +1,63 @@
+{
+  "extends": "../../../tsconfig.base.client.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/types"
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "../../../vendor/cordis"
+    },
+    {
+      "path": "../../api/roleplay-controller/tsconfig.client.json"
+    },
+    {
+      "path": "../locale"
+    },
+    {
+      "path": "../ui-layout"
+    },
+    {
+      "path": "../ui-renderer"
+    },
+    {
+      "path": "../ui-session"
+    },
+    {
+      "path": "../ui-slots"
+    },
+    {
+      "path": "../../runtime-diagnostics/invariants"
+    },
+    {
+      "path": "../../story/roleplay-core"
+    },
+    {
+      "path": "../store"
+    },
+    {
+      "path": "../../util/crypto"
+    },
+    {
+      "path": "../ui-sidebar"
+    },
+    {
+      "path": "../ui-theme"
+    },
+    {
+      "path": "../ui-conversation"
+    },
+    {
+      "path": "../../api/session-controller/tsconfig.client.json"
+    },
+    {
+      "path": "../ui-chat"
+    },
+    {
+      "path": "../ui-model-selection"
+    }
+  ]
+}

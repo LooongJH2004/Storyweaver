@@ -1,0 +1,6 @@
+# Bilingual-pair consistency record (docs/i18n/README.md): the git blob hash of each
+# side as of the last confirmed-consistent state. Both languages carry equal authority;
+# after editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/bug-fix/2026-09-08-story-composer-native-model-selection.md
+2026-09-08-story-composer-native-model-selection.md: 5672e76c333d528f733a1bcbc533a91b2689934d
+2026-09-08-story-composer-native-model-selection.zh.md: c93ce79cf8687e354789c8c727052cde3c75e1c2

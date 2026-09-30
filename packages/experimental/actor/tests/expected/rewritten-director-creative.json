@@ -1,0 +1,8 @@
+{
+  "id": "performance",
+  "role": "system",
+  "content": "Write 1000–1500 characters for the next substantive narration.",
+  "sources": [
+    "recipe:performance"
+  ]
+}

@@ -1,0 +1,11 @@
+version: 1
+scenario: request-history-projection
+profile: sdk
+composition: sdk-history-projection
+recording: authored
+header:
+  class: sdk-history-projection
+  pin: true
+  changes: 1
+  systemPromptSource: sdk/text-turn
+  toolSchemasSource: sdk/text-turn

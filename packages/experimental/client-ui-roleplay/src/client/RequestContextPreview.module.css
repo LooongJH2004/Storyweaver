@@ -1,0 +1,110 @@
+.dialog.dialog {
+  width: min(960px, calc(100vw - 48px));
+  height: 90dvh;
+  max-height: 90dvh;
+  gap: 0;
+  padding: 0;
+  background: var(--dsw-alias-bg-layer-2);
+  color: var(--dsw-alias-label-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.heading {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 12px;
+}
+
+.heading h2 { margin: 0; font-size: 20px; }
+.heading p { margin: 4px 0 0; color: var(--dsw-alias-label-secondary); }
+
+.close {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: inherit;
+  cursor: pointer;
+}
+
+.views {
+  display: flex;
+  flex: none;
+  gap: 8px;
+  padding: 0 24px 12px;
+  border-bottom: 1px solid var(--dsw-alias-border-inverted);
+}
+
+.views button, .action {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--dsw-alias-border-inverted);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.views button[aria-pressed='true'], .views button:hover, .action:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+.views button[aria-pressed='true'] { font-weight: 700; }
+.dialog button:focus-visible, .section summary:focus-visible {
+  outline: 2px solid var(--dsw-alias-label-primary);
+  outline-offset: 2px;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 16px 24px 24px;
+}
+.summary { margin: 0 0 16px; color: var(--dsw-alias-label-secondary); }
+.messages { display: grid; gap: 16px; margin: 0; padding: 0; list-style: none; }
+.message { min-width: 0; padding: 16px; border: 1px solid var(--dsw-alias-border-inverted); border-radius: 12px; }
+.messageHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.messageHeading h3 { margin: 0; font-size: 15px; }
+.messageHeading small, .metadata { color: var(--dsw-alias-label-secondary); font-size: 12px; overflow-wrap: anywhere; }
+.messageHeading small { flex: none; }
+.block { margin: 12px 0; }
+.block h4 { margin: 0 0 4px; color: var(--dsw-alias-label-secondary); font-size: 12px; font-weight: 500; }
+.text { margin: 0; font-size: 15px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.text[data-collapsed='true'] { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden; }
+.action { margin-top: 8px; font-size: 13px; }
+.section { margin-top: 12px; border-top: 1px solid var(--dsw-alias-border-inverted); }
+.section summary { display: flex; align-items: center; gap: 8px; padding: 10px 0; cursor: pointer; list-style: none; overflow-wrap: anywhere; }
+.section summary::-webkit-details-marker { display: none; }
+.section summary svg { flex: none; }
+.section:not([open]) summary svg { transform: rotate(-90deg); }
+.raw { margin: 0; font: 13px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.parameters { margin: 0 0 24px; }
+.parameters > div { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(0, 3fr); gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--dsw-alias-border-inverted); }
+.parameters dt { color: var(--dsw-alias-label-secondary); overflow-wrap: anywhere; }
+.parameters dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 640px) {
+  .dialog.dialog { position: fixed; inset: 8px; width: auto; height: auto; max-height: none; border-radius: 14px; }
+  .heading { padding: 16px 16px 12px; }
+  .heading h2 { font-size: 18px; }
+  .views { padding: 0 16px 12px; gap: 6px; }
+  .views button { padding: 6px 8px; font-size: 13px; }
+  .body { padding: 12px 16px 16px; }
+  .message { padding: 12px; }
+  .messageHeading { flex-wrap: wrap; gap: 4px; }
+}
+
+.retention { display: flex; flex-wrap: wrap; gap: 16px; padding: 0 24px; margin: 0 0 12px; }
+.retention div { display: flex; gap: 8px; }
+.retention dd { margin: 0; font-weight: 600; }

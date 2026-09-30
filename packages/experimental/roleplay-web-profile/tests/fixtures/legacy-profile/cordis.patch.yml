@@ -1,0 +1,169 @@
+# Storyweaver product layer. StoryId is the only browser-visible project
+# identity; all Story data is rooted below the fixed Storyweaver Home.
+
+- id: system-prompt
+  config:
+    persona: >-
+      You are the Storyweaver world director, not a persistent character Actor. Your authority covers scene framing, non-character environment, continuity facts, open plot threads, and structured Director Briefs containing only Actor perceptions and uncertainties. Never write words, thoughts, decisions, or autonomous actions for a persistent character. Persistent-character dialogue and behavior exist only when accepted NPC Actor tools append durable events; ordinary Director prose has no character-behavior authority. If no NPC event exists, leave that character silent and unresolved. The player may observe, choose direction, intervene, or temporarily embody a character, but embodiment remains explicitly player-origin. Preserve information asymmetry, never expose implementation paths, and leave character responses to their autonomous Actor Agents.
+
+- id: session-persistence-jsonl
+  inject: [storyHome]
+  config:
+    root: !!js ctx.storyHome.path('sessions')
+
+- id: storage-json
+  inject: [storyHome]
+  config:
+    root: !!js ctx.storyHome.path('storages')
+
+- id: attachment-local
+  inject: [storyHome]
+  config:
+    dshHome: !!js ctx.storyHome.root
+
+- id: session-controller
+  inject: [storyRegistry]
+  config:
+    requireStory: true
+
+- id: agent-presets
+  config:
+    default: storyweaver
+
+- id: code-runtime
+  disabled: true
+
+# Permission state remains Host-owned so Creator Sessions can choose read-only,
+# workspace-write, or explicitly confirmed full access. The generic Web
+# permission UI stays disabled below; the roleplay client exposes a narrow
+# Creator-only control. Director and Actor presets still own fixed tool sets.
+- id: permission
+  disabled: false
+
+# Storyweaver sends fictional context, not Harness implementation metadata.
+# This also keeps source-checkout-only Actor packages out of DeepSeek request
+# extension preparation.
+- id: plugin-package-inventory-deepseek
+  disabled: true
+
+- id: session-log-download
+  disabled: true
+
+- id: workspace
+  disabled: true
+
+- id: session-reference
+  disabled: true
+
+- id: file-reference-local
+  disabled: true
+
+- id: directory-picker
+  disabled: true
+
+- id: workspace-controller
+  disabled: true
+
+- id: ui-brand-official
+  disabled: true
+
+- id: ui-tool
+  disabled: true
+
+- id: ui-approval
+  disabled: true
+
+- id: ui-cordis
+  disabled: true
+
+- id: ui-workflow-run
+  disabled: true
+
+- id: ui-deliverables
+  disabled: true
+
+- id: ui-workspace
+  disabled: true
+
+- id: ui-input-trigger
+  disabled: true
+
+- id: ui-commands
+  disabled: true
+
+- id: ui-skill
+  disabled: true
+
+- id: ui-reference
+  disabled: true
+
+- id: ui-subagent
+  disabled: true
+
+- id: ui-jobs
+  disabled: true
+
+- id: ui-goal
+  disabled: true
+
+- id: ui-agent-preset
+  disabled: true
+
+- id: ui-permission
+  disabled: true
+
+- id: ui-settings-plugin-inventory
+  disabled: true
+
+- id: ui-settings-plugins
+  disabled: true
+
+- id: ui-plan
+  disabled: true
+
+- id: ui-trajectory
+  disabled: true
+
+- id: ui-user-questions
+  disabled: true
+
+- insert:
+    # Creation mode needs explicit local-directory authorization, but not the
+    # base directory picker's ui-workspace surfaces. Compose only the native
+    # Host backend and this profile's narrow Remote bridge.
+    - id: roleplay-directory-picker-native
+      name: '@deepseek-ai/dsh-host-directory-picker-native'
+
+    - id: roleplay-directory-picker-controller
+      name: '@deepseek-ai/dsh-experimental-roleplay-web-profile'
+
+    - id: story-home
+      name: '@deepseek-ai/dsh-story-home'
+
+    - id: story-registry
+      name: '@deepseek-ai/dsh-story'
+
+    - id: story-controller
+      name: '@deepseek-ai/dsh-api-story-controller'
+
+    - id: actor
+      name: '@deepseek-ai/dsh-experimental-actor'
+
+    - id: tool-actor
+      name: '@deepseek-ai/dsh-experimental-tool-actor'
+      config:
+        isolateGlobalTools: true
+
+    - id: tool-director
+      name: '@deepseek-ai/dsh-experimental-tool-director'
+      config:
+        actorPreset: storyweaver-actor
+        directorRecentEventLimit: 64
+        actorRecentPerceptionLimit: 32
+        discussionRecentTurnLimit: 12
+
+    - id: ui-story
+      name: '@deepseek-ai/dsh-client-ui-story'
+
+    - id: ui-roleplay
+      name: '@deepseek-ai/dsh-experimental-client-ui-roleplay'

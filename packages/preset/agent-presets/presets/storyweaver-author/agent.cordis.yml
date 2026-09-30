@@ -1,0 +1,18 @@
+- id: creator-tools
+  name: '@deepseek-ai/dsh-roleplay-services/creator'
+
+- id: local-files
+  name: '@deepseek-ai/dsh-tool-fs'
+
+- id: local-search
+  name: '@deepseek-ai/dsh-tool-fs-search'
+  config:
+    sampleOverCapGlobResults: false
+
+- id: tool-bash
+  name: '@deepseek-ai/dsh-tool-bash'
+  disabled: !!js process.platform === 'win32'
+
+- id: tool-pwsh
+  name: '@deepseek-ai/dsh-tool-pwsh'
+  disabled: !!js process.platform !== 'win32'

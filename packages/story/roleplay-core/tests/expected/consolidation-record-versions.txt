@@ -1,0 +1,9 @@
+{"id":"knowledge:a:r1","kind":"personal-judgment","revision":1,"revisionScope":"record"}
+```
+I believe the promise was kept.
+```
+
+{"id":"state:b:r99","kind":"personal-state","revision":99,"revisionScope":"record"}
+```
+Trust increased.
+```
